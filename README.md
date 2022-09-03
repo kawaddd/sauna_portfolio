@@ -1,24 +1,29 @@
-# README
+# サウナーコミュニティ
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+### サイトテーマ
+サウナを趣味にしたい人が予備知識をつけれたり、大阪のサウナの評価ができて有益な情報を交換し合えるレビューサイト
 
-Things you may want to cover:
+### テーマを選んだ理由
+サウナが好きで、週に1回はサウナに通っているのですが、他のサウナーが行ったサウナやその評価を情報交換できるサービスがあれば便利だと考え、このテーマにしました。
 
-* Ruby version
+### ターゲットユーザ
+サウナが好きな人やこれからサウナに行きたいと考えている人
 
-* System dependencies
+### 主な利用シーン
+サウナの予備知識を身につけたい時や、サウナ選びの参考にしたい時。
 
-* Configuration
+## 設計書
+<準備中>
 
-* Database creation
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 使用素材
+- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
+- 使用しない場合は、使用素材の項目をREADMEから削除してください。
+<検討中>
