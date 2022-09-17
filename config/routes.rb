@@ -21,13 +21,13 @@ devise_for :users,skip: [:passwords],controllers: {
     get 'about', to: 'homes#about'
     resources :saunas
     resources :users
-    scope :users do
+    namespace	 :users do
       get 'reviewed_saunas/index'
     end
-    scope :users do
+    namespace	 :users do
       get 'hozon_saunas/index'
     end
-    scope :users do
+    namespace	 :users do
       get 'visited_saunas/index'
     end
     resources :reviews

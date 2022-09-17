@@ -1,2 +1,30 @@
-<h1>Admin::Saunas#new</h1>
-<p>Find me in app/views/admin/saunas/new.html.erb</p>
+<h2>サウナ新規登録</h2>
+<%= form_with model: @sauna,url: admin_saunas_path do |f| %>
+<table>
+  <tr>
+    <td>商品画像</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>商品名</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>商品説明</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>ジャンル</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>税抜価格</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>販売ステータス</td>
+    <td></td>
+  </tr>
+</table>
+<%= f.submit '新規登録' %>
+<% end %>
