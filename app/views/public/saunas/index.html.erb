@@ -1,2 +1,38 @@
-<h1>Public::Saunas#index</h1>
-<p>Find me in app/views/public/saunas/index.html.erb</p>
+<div class="container" style="height: 500px">
+  <div class="row">
+    <div class="col-md-3 offset-md-1 mt-3">
+      <h3>
+        <strong>〇〇のサウナ(全<%= Sauna.all.count %>件)</strong>
+        <!--〇〇には検索したエリアを入れる-->
+      </h3>
+    </div>
+  </div>
+  <!--<div>-->
+  <!--  <ul style="list-style: none;">-->
+  <!--    <li>ランキング</li>-->
+  <!--    <li>口コミ数</li>-->
+  <!--    <li>ニューオープン</li>-->
+  <!--  </ul>-->
+  <!--</div>-->
+  <!--13~17どうやって出すか未定-->
+  <div class="row">
+    <% @saunas.each do |sauna| %>
+　　　<div class="col-md-3">
+        <%= link_to sauna_path(sauna) do %>
+        　<% if sauna.image.attached? %>
+            <%= image_tag sauna.store_image, size: "200x200" %>
+        　<% else %>
+            <%= image_tag 'no_image', size: "200x200" %>
+        　<% end %>
+        <% end %>
+        <p><%= sauna.store_name  %></p>
+        <!--modal windowで口コミのフォームを出す-->
+        <!--サウナのブックマーク機能-->
+　　　</div>
+    <% end %>
+  </div>
+</div>
+
+<!--<div>-->
+  <%#= paginate @saunas %>
+<!--</div>-->

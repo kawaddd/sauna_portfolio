@@ -1,5 +1,7 @@
 class Admin::SaunasController < ApplicationController
   def index
+    # @saunas = Sauna.page(params[:page])
+    @saunas = Sauna.all
   end
 
   def new
@@ -18,11 +20,17 @@ class Admin::SaunasController < ApplicationController
   end
 
   def show
+    @sauna = Sauna.find(params[:id])
   end
 
   def edit
   end
 
   def update
+  end
+
+  private
+  def sauna_params
+    params.require(:sauna).permit(:user_id,:store_name,:phone_number,:address,:transportation,:business_hours,:regular_holiday,:homepage_link,:store_image,:genre,:approval_flags)
   end
 end

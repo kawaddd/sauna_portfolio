@@ -1,2 +1,41 @@
-<h1>Admin::Saunas#index</h1>
-<p>Find me in app/views/admin/saunas/index.html.erb</p>
+<div class="container">
+  <div class="row mt-3">
+    <div class="col-2">
+      <h3>サウナ一覧</h3>
+    </div>
+    <div class="col-2 offset-8">
+      <h3><%= link_to "新規登録", new_admin_sauna_path %></h3>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <table class="col-12">
+      <thead>
+        <tr>
+          <th>サウナID</th>
+          <th>店名</th>
+          <th>店舗画像</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @saunas.each do |sauna| %>
+        <tr>
+          <td><%= sauna.id %></td>
+          <td><%= link_to sauna.store_name, admin_sauna_path(sauna.id)%></td>
+          <td>
+            <%= link_to admin_sauna_path(sauna.id) do %>
+            　<% if sauna.store_image.attached? %>
+                <%= image_tag sauna._image, size: "200x200" %>
+            　<% else %>
+                <%= image_tag 'no_image', size: "200x200" %>
+            　<% end %>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<%#= paginate @items %>

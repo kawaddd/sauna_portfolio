@@ -1,30 +1,55 @@
 <h2>サウナ新規登録</h2>
 <%= form_with model: @sauna,url: admin_saunas_path do |f| %>
-<table>
-  <tr>
-    <td>商品画像</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>商品名</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>商品説明</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>ジャンル</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>税抜価格</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>販売ステータス</td>
-    <td></td>
-  </tr>
-</table>
+
+  <div class="form-group row">
+    <div class="col-sm-2 offset-sm-1">サウナ画像</div>
+    <div class="col-sm-4">
+      <%= f.file_field :store_image, accept: "image/*" %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-2 offset-sm-1">店名</div>
+    <div class="col-sm-4">
+      <%= f.text_field :store_name,placeholder:"店名",class:"form-control"  %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-2 offset-sm-1">お問い合わせ</div>
+    <div class="col-sm-4">
+      <%= f.text_field :phone_number,placeholder:"1234567890",class:"form-control"  %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-2 offset-sm-1">住所</div>
+    <div class="col-sm-4">
+      <%= f.text_field :address,placeholder:"大阪府大阪市中央区船場中央1-1-1",class:"form-control"  %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-2 offset-sm-1">交通手段</div>
+    <div class="col-sm-4">
+      <%= f.text_field :transportation,placeholder:"御堂筋線　本町駅下車　徒歩1分",class:"form-control"  %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-2 offset-sm-1">営業時間</div>
+    <div class="col-sm-4">
+      <%= f.text_field :business_hours,placeholder:"9:00~1:00",class:"form-control"  %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-2 offset-sm-1">定休日</div>
+    <div class="col-sm-4">
+      <%= f.text_field :regular_holiday,placeholder:"月曜日",class:"form-control"  %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-2 offset-sm-1">HPリンク</div>
+    <div class="col-sm-4">
+      <%= f.text_field :homepage_link,placeholder:"https://sauna.com/",class:"form-control"  %>
+    </div>
+  </div>
 <%= f.submit '新規登録' %>
 <% end %>
+
+
