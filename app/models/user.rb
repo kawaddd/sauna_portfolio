@@ -10,4 +10,8 @@ class User < ApplicationRecord
   has_many :bookmarks
   has_many :recommendations
   has_many :comments
+
+  has_one_attached :profile_image
 end
+
+

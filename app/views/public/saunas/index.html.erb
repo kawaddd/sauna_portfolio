@@ -19,7 +19,7 @@
     <% @saunas.each do |sauna| %>
 　　　<div class="col-md-3">
         <%= link_to sauna_path(sauna) do %>
-        　<% if sauna.image.attached? %>
+        　<% if sauna.store_image.attached? %>
             <%= image_tag sauna.store_image, size: "200x200" %>
         　<% else %>
             <%= image_tag 'no_image', size: "200x200" %>

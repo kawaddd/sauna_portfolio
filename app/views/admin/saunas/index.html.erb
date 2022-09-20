@@ -26,7 +26,7 @@
           <td>
             <%= link_to admin_sauna_path(sauna.id) do %>
             　<% if sauna.store_image.attached? %>
-                <%= image_tag sauna._image, size: "200x200" %>
+                <%= image_tag sauna.store_image, size: "200x200" %>
             　<% else %>
                 <%= image_tag 'no_image', size: "200x200" %>
             　<% end %>

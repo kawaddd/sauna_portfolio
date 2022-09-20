@@ -10,7 +10,9 @@ class Admin::SaunasController < ApplicationController
 
   def create
     @sauna = Sauna.new(sauna_params)
+   
     if @sauna.save
+      
       # flash[:notice] = "You have created sauna successfully."
       redirect_to admin_sauna_path(@sauna.id)
     else
