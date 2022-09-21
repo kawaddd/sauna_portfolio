@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :saunas
   has_many :reviews
   has_many :likes
-  has_many :bookmarks
+  has_many :bookmarks, dependent: :destroy
   has_many :recommendations
   has_many :comments
 

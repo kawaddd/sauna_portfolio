@@ -20,6 +20,10 @@ devise_for :users,skip: [:passwords],controllers: {
     root to: 'homes#top'
     get 'about', to: 'homes#about'
     resources :saunas
+    get 'users/unsubscribe', to: 'users#unsubscribe'
+    patch 'users/withdraw', to: 'users#withdraw'
+    get 'users/information/edit', to: 'users#edit', as: 'edit_users'
+    patch 'users/information', to: 'users#update', as: 'update_users'
     resources :users
     namespace	 :users do
       get 'reviewed_saunas/index'

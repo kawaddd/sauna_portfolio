@@ -9,7 +9,7 @@ class Public::UsersController < ApplicationController
 
   def update
     current_user.update(user_params)
-    redirect_to user_path(user)
+    redirect_to user_path
   end
 
   def unsubscribe
@@ -20,7 +20,7 @@ class Public::UsersController < ApplicationController
     current_user.update(is_active: false)
     reset_session
     redirect_to root_path
-  end
+  ends
 
   private
   def user_params
