@@ -7,15 +7,13 @@
   <div class="row">
     <div class="mx-auto mb-3 text-center">
       <h3>
-        退会すると、会員登録情報や</br>
-        これまでの購入履歴が閲覧できなくなります。</br>
         退会する場合は、「退会する」をクリックしてください。
       </h3>
     </div>
   </div>
   <div class="row">
     <div class="col-md-2 offset-md-4">
-      <%= link_to "退会しない", user_path(current_user),class: "btn btn-primary ml-3 " %>
+      <%= link_to "退会しない", user_path(@user),class: "btn btn-primary ml-3 " %>
     </div>
     <div class="col-md-2">
       <%= link_to "退会する", users_withdraw_path,method: :patch,"data-confirm" => "本当に消しますか？",class: "btn btn-danger ml-3 " %>

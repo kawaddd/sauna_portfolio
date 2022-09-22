@@ -1,1 +1,60 @@
-admin/user/show
+<div class="container">
+  <div class="row">
+  <div class="col-md-1"></div>
+  <h3><%= @user.nickname %>さんの会員詳細</h3>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+    <table>
+      <tr>
+        <td>会員ID</td>
+        <td><%= @user.id %></td>
+      </tr>
+      <tr>
+        <td>ニックネーム</td>
+        <td><%= @user.nickname %></td>
+      </tr>
+      <tr>
+        <td>プロフィール画像</td>
+        <td>
+          <% if @user.profile_image.attached? %>
+            <%= image_tag @user.profile_image, size: "250x250" %>
+          <% else %>
+            <%= image_tag 'no_image', size: "250x250" %>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td>自己紹介文</td>
+        <td><%= @user.self_introduction %></td>
+      </tr>
+      <tr>
+        <td>生年月日</td>
+        <td><%= @user.birth_date %></td>
+      </tr>
+      <tr>
+        <td>性別</td>
+        <td><%= @user.gender %></td>
+      </tr>
+      <tr>
+        <td>メールアドレス</td>
+        <td><%= @user.email %></td>
+      </tr>
+      <tr>
+        <td>会員ステータス</td>
+        <% if @user.is_active == true %>
+        <td>有効</td>
+        <% else %>
+        <td>退会</td>
+        <% end %>
+      </tr>
+    </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-5"></div>
+    <%= link_to "編集する", edit_admin_user_path(@user) %>
+  </div>
+</div>

@@ -20,7 +20,7 @@ class Public::UsersController < ApplicationController
     current_user.update(is_active: false)
     reset_session
     redirect_to root_path
-  ends
+  end
 
   private
   def user_params
