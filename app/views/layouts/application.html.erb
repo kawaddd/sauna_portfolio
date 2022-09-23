@@ -10,9 +10,12 @@
   </head>
 
   <body>
-    <header class="shadow-sm">
+    <header>
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
+          <h1 class="heading">
+            <%= link_to "サウナ広場", root_path,class:"nav-link text-dark" %>
+          </h1>
           <!--<a class="navbar-brand p-3" href="/"><%#= image_tag('logo.png') %></a>-->
           <!--ここでエラー出る-->
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,7 +23,11 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
-            <% if user_signed_in? %>
+            <% if admin_signed_in? %>
+              <li>
+                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete,class:"nav-link text-dark"  %>
+              </li>
+            <% elsif user_signed_in? %>
               <li>
                 <%= link_to "マイページ", user_path(current_user),class:"nav-link text-dark" %>
               </li>
@@ -35,10 +42,6 @@
               </li>
               <li>
                 <%= link_to "ログアウト", destroy_user_session_path, method: :delete,class:"nav-link text-dark"  %>
-              </li>
-            <% elsif admin_signed_in? %>
-              <li>
-                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete,class:"nav-link text-dark"  %>
               </li>
             <% else %>
               <li>

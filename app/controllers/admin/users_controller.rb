@@ -1,4 +1,5 @@
 class Admin::UsersController < ApplicationController
+  before_action :authenticate_admin!
   def index
     # @customers = Customer.page(params[:page])
     @users = User.all

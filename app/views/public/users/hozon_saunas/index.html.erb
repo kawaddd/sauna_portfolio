@@ -1,10 +1,20 @@
-<h1>Public::Users::HozonSaunas#index</h1>
-<p>Find me in app/views/public/users/hozon_saunas/index.html.erb</p>
-
-
-
-<% if @sauna.bookmarked_by?(current_user) %>
-  <td><%= link_to "ブックマークを外す", users_hozon_saunas_index_path(@sauna), method: :delete %></td>
-<% else %>
-  <td><%= link_to "ブックマーク", users_hozon_saunas_indexpath(@sauna), method: :post %></td>
+<% @bookmarks.each do |bookmark| %>
+  <tr>
+    <td>
+      <%= link_to sauna_path(bookmark.sauna) do %>
+        <%= image_tag bookmark.sauna.store_image, size: "200x200" %>
+      <% end %>
+    </td>
+    <td>
+      <%= link_to sauna_path(bookmark.sauna) do %>
+        <%= bookmark.sauna.store_name %>
+      <% end %>
+    </td>
+    <td>
+      <%= bookmark.sauna.address %>
+    </td>
+    <td>
+      <%= bookmark.sauna.business_hours %>
+    </td>
+  </tr>
 <% end %>

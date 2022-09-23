@@ -119,7 +119,7 @@ ActiveRecord::Schema.define(version: 2022_09_20_110233) do
     t.date "birth_date"
     t.string "profile_image"
     t.text "self_introduction"
-    t.boolean "is_active"
+    t.boolean "is_active", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true

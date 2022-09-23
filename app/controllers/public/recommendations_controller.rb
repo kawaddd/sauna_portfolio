@@ -1,4 +1,5 @@
 class Public::RecommendationsController < ApplicationController
+  before_action :authenticate_user!
   def create
   end
 

@@ -1,4 +1,5 @@
 class Public::BookmarksController < ApplicationController
+  before_action :authenticate_user!
   def create
     @sauna = Sauna.find(params[:sauna_id])
     bookmark = @sauna.bookmarks.new(user_id: current_user.id)

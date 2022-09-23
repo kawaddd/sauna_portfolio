@@ -19,7 +19,9 @@ devise_for :users,skip: [:passwords],controllers: {
   scope module: :public do
     root to: 'homes#top'
     get 'about', to: 'homes#about'
-    resources :saunas
+    resources :saunas do
+      resource :bookmarks, only: [:create, :destroy]
+    end
     get 'users/unsubscribe', to: 'users#unsubscribe'
     patch 'users/withdraw', to: 'users#withdraw'
     get 'users/information/edit', to: 'users#edit', as: 'edit_users'

@@ -28,34 +28,82 @@
         <p><%= sauna.store_name  %></p>
         <!--modal windowで口コミのフォームを出す-->
         <!--サウナのブックマーク機能-->
+        <% if sauna.bookmarked_by?(current_user) %>
+          <td><%= link_to "ブックマークを外す", sauna_bookmarks_path(sauna), method: :delete %></td>
+        <% else %>
+          <td><%= link_to "ブックマーク", sauna_bookmarks_path(sauna), method: :post %></td>
+        <% end %>
 　　　</div>
     <% end %>
   </div>
 </div>
 
 
-<main>
-  <section class="blog">
-    <h2 class="blog-heading">Recent Blogs</h2>
-    <div class="blog-box">
-      <div class="blog-item">
-      　  <img class="blog-image" src="img/forest.jpg" />
-        <section class="blog-text">
-          <h3 class="blog-text-heading">
-            <a href="single.html">
-              Hopeful lessons from<br>
-              the battle to save<br>
-              rainforests
-            </a>
-          </h3>
-          <p class="blog-date">June 19, 2017</p>
-          <span class="category">Nature</span>
-        </section>
-      </div>
-    </div>
-  </section>
-  <div class="sidebar"></div>
-</main>
+
+
+<%= form_with model: @review,local:true,url: reviews_path do |f| %>
+  <div class="form-group">
+    <%= f.label :タイトル %>
+    <%= f.text_field :headline, class: 'form-control book_body' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :本文 %>
+    <%= f.text_area :text, class: 'form-control book_title' %>
+  </div>
+  <div class="form-group">
+    <%= f.submit class: 'btn btn-success' %>
+  </div>
+
+ーーーーーーーーーーーーーーここからが星レビュー機能ーーーーーーーーーーーーーーーー
+  <div class="form-group row" id="score">
+    <%= f.label :score,'評価 ', class:'col-md-3 col-form-label' %>
+    <%= f.hidden_field :score, id: :review_score %>
+　　　　</div>
+  <script>
+　　　　$('#score').empty();
+  $('#score').raty({
+    size     : 36,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+ 　 　　　scoreName: 'sauna[score]',
+    half: '<%= asset_path('star-half.png') %>',
+  });
+  </script>
+ーーーーーーーーーーーーーーここまでが星レビュー機能ーーーーーーーーーーーーーーーー
+<% end %>
+
+
+
+
+
+
+
+
+<!--<main>-->
+<!--  <section class="blog">-->
+<!--    <h2 class="blog-heading">Recent Blogs</h2>-->
+<!--    <div class="blog-box">-->
+<!--      <div class="blog-item">-->
+<!--      　  <img class="blog-image" src="img/forest.jpg" />-->
+<!--        <section class="blog-text">-->
+<!--          <h3 class="blog-text-heading">-->
+<!--            <a href="single.html">-->
+<!--              Hopeful lessons from<br>-->
+<!--              the battle to save<br>-->
+<!--              rainforests-->
+<!--            </a>-->
+<!--          </h3>-->
+<!--          <p class="blog-date">June 19, 2017</p>-->
+<!--          <span class="category">Nature</span>-->
+<!--        </section>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </section>-->
+<!--  <div class="sidebar"></div>-->
+<!--</main>-->
+
+
+
 <!--<div>-->
   <%#= paginate @saunas %>
 <!--</div>-->
