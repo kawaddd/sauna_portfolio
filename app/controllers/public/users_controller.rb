@@ -12,6 +12,19 @@ class Public::UsersController < ApplicationController
     redirect_to user_path
   end
 
+  def reviewed_saunas
+    @user = User.find(params[:user_id])
+  end
+
+  def hozon_saunas
+    @user = User.find(params[:user_id])
+    @bookmarks = Bookmark.where(user_id: current_user.id)
+  end
+
+  def visited_saunas
+    @user = User.find(params[:user_id])
+  end
+
   def unsubscribe
     @user = current_user
   end

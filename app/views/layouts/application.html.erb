@@ -32,13 +32,13 @@
                 <%= link_to "マイページ", user_path(current_user),class:"nav-link text-dark" %>
               </li>
               <li>
-                <%= link_to "訪れたサウナ", users_visited_saunas_index_path,class:"nav-link text-dark" %>
+                <%= link_to "訪れたサウナ", user_visited_saunas_path(current_user),class:"nav-link text-dark" %>
               </li>
               <li>
-                <%= link_to "保存済み", users_hozon_saunas_index_path,class:"nav-link text-dark" %>
+                <%= link_to "保存済み", user_hozon_saunas_path(current_user),class:"nav-link text-dark" %>
               </li>
               <li>
-                <%= link_to "レビュー済み", users_reviewed_saunas_index_path,class:"nav-link text-dark" %>
+                <%= link_to "レビュー済み", user_reviewed_saunas_path(current_user),class:"nav-link text-dark" %>
               </li>
               <li>
                 <%= link_to "ログアウト", destroy_user_session_path, method: :delete,class:"nav-link text-dark"  %>

@@ -7,5 +7,6 @@ class Public::SaunasController < ApplicationController
 
   def show
     @sauna = Sauna.find(params[:id])
+    @review = Review.new
   end
 end

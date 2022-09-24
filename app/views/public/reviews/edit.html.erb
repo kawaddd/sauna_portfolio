@@ -1,2 +1,47 @@
-<h1>Public::Reviews#edit</h1>
-<p>Find me in app/views/public/reviews/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+  <div class="col-md-1"></div>
+  <h3>口コミ編集</h3>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+    <%= form_with(model:[@sauna,@review]) do |f| %>
+      <table>
+        <tr>
+          <td><%= f.label :タイトル %></td>
+          <td><%= f.text_field :headline, class: 'form-control' %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :本文 %></td>
+          <td><%= f.text_area :text, class: 'form-control' %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :訪問日 %></td>
+          <td><%= f.date_select :visit_day, use_month_numbers: true,start_year: 2010, end_year: (Time.now.year), default: Date.new(2020, 1, 1) %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :score,'評価 ', class:'col-md-3 col-form-label' %></td>
+          <td id="edit-comf-<%= @review.id %>"></td>
+        </tr>
+      </table>
+    <div class="row">
+      <%= f.submit '編集内容を保存',class: "btn btn-success col-md-2 offset-sm-3" %>
+      <%= link_to '削除する', sauna_review_path,method: :destroy,"data-confirm" => "本当に消しますか？",class: "btn btn-danger col-md-2 offset-sm-1" %>
+    </div>
+
+    <script>
+      $('#edit-comf-<%= @review.id %>').empty();
+      $('#edit-comf-<%= @review.id %>').raty({
+        size: 36,
+        starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        starHalf: '<%= asset_path('star-half.png') %>',
+        half: true,
+        score: <%= @review.score %>,
+        scoreName: 'review[score]',
+      });
+    </script>
+    <% end %>
+    </div>
+  </div>

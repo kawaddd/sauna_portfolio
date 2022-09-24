@@ -26,7 +26,60 @@
         　<% end %>
         <% end %>
         <p><%= sauna.store_name  %></p>
-        <!--modal windowで口コミのフォームを出す-->
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#review-modal-<%= sauna.id %>">
+          口コミ投稿
+        </button>
+        <!-- Modal -->
+        <%= form_with model: [sauna, @review],local: true do |f| %>
+        <div class="modal fade" id="review-modal-<%= sauna.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><%= sauna.store_name %></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <%= f.label :タイトル %>
+                  <%= f.text_field :headline, class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                  <%= f.label :本文 %>
+                  <%= f.text_area :text, class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                  <%= f.label :訪問日 %>
+                  <%= f.date_select :visit_day, use_month_numbers: true,start_year: 2010, end_year: (Time.now.year), default: Date.new(2020, 1, 1) %>
+                </div>
+                <div class="form-group row" id="score-<%= sauna.id %>">
+                  <%= f.label :score,'評価 ', class:'col-md-3 col-form-label' %>
+                </div>
+                <%= f.hidden_field :sauna_id, :value => sauna.id %>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <%= f.submit class: 'btn btn-success' %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script>
+          $('#score-<%= sauna.id %>').empty();
+          $('#score-<%= sauna.id %>').raty({
+            size     : 36,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn : '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            scoreName: 'review[score]',
+            half: true,
+            readOnly: false,
+          });
+        </script>
+        <% end %>
+
         <!--サウナのブックマーク機能-->
         <% if sauna.bookmarked_by?(current_user) %>
           <td><%= link_to "ブックマークを外す", sauna_bookmarks_path(sauna), method: :delete %></td>
@@ -41,36 +94,7 @@
 
 
 
-<%= form_with model: @review,local:true,url: reviews_path do |f| %>
-  <div class="form-group">
-    <%= f.label :タイトル %>
-    <%= f.text_field :headline, class: 'form-control book_body' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :本文 %>
-    <%= f.text_area :text, class: 'form-control book_title' %>
-  </div>
-  <div class="form-group">
-    <%= f.submit class: 'btn btn-success' %>
-  </div>
 
-ーーーーーーーーーーーーーーここからが星レビュー機能ーーーーーーーーーーーーーーーー
-  <div class="form-group row" id="score">
-    <%= f.label :score,'評価 ', class:'col-md-3 col-form-label' %>
-    <%= f.hidden_field :score, id: :review_score %>
-　　　　</div>
-  <script>
-　　　　$('#score').empty();
-  $('#score').raty({
-    size     : 36,
-    starOff:  '<%= asset_path('star-off.png') %>',
-    starOn : '<%= asset_path('star-on.png') %>',
- 　 　　　scoreName: 'sauna[score]',
-    half: '<%= asset_path('star-half.png') %>',
-  });
-  </script>
-ーーーーーーーーーーーーーーここまでが星レビュー機能ーーーーーーーーーーーーーーーー
-<% end %>
 
 
 
