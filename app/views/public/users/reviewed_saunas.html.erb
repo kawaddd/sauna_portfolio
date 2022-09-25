@@ -7,7 +7,7 @@
   <div class="row">
       <% @reviews.each do |review| %>
         <div class="col-md-6">
-          <%= link_to sauna_path(review) do %>
+          <%= link_to sauna_path(review.sauna.id) do %>
             <% if review.sauna.store_image.attached? %>
               <%= image_tag review.sauna.store_image, size: "200x200" %>
             <% else %>
@@ -16,10 +16,10 @@
           <% end %>
         </div>
         <div class="col-md-6">
-          <div><%= review.sauna.store_name  %></div>
-          <div><%= review.headline  %></div>
-          <div><%= review.text  %></div>
-          <div><%= review.visit_day  %></div>
+          <div><%= review.sauna.store_name %></div>
+          <div><%= review.headline %></div>
+          <div><%= review.text %></div>
+          <div><%= review.visit_day %></div>
           <div id="score-rate<%= review.id%>">
             <script>
               $('#score-rate<%= review.id %>').empty();

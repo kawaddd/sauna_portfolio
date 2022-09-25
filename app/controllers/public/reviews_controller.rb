@@ -19,19 +19,18 @@ class Public::ReviewsController < ApplicationController
   def edit
     @review = Review.find(params[:id])
     @sauna = Sauna.find(params[:sauna_id])
-    # binding.pry
   end
 
   def update
     review = Review.find(params[:id])
-    review.update(review_params)
-    redirect_to sauna_reviewes_path
+    review.update!(review_params)
+    redirect_to sauna_path(review.sauna.id)
   end
 
   def destroy
     review = Review.find(params[:id])
-    review.destroy
-    redirect_to sauna_reviews_path
+    review.destroy!
+    redirect_to user_reviewed_saunas_path(current_user.id)
   end
 
   private
