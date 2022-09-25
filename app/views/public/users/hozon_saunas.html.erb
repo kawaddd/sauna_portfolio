@@ -1,20 +1,32 @@
-<% @bookmarks.each do |bookmark| %>
-  <tr>
-    <td>
-      <%= link_to sauna_path(bookmark.sauna) do %>
-        <%= image_tag bookmark.sauna.store_image, size: "200x200" %>
+<div class="container" style="height: 500px">
+  <div class="row">
+    <div class="col-md-3 offset-md-1 mb-3">
+      <h3><%= @user.nickname %>の保存済み一覧(全<%= @bookmarks.count %>件)</h3>
+    </div>
+  </div>
+  <div class="row">
+      <% @bookmarks.each do |bookmark| %>
+        <div class="col-md-6">
+          <%= link_to sauna_path(bookmark.sauna) do %>
+            <% if bookmark.sauna.store_image.attached? %>
+              <%= image_tag bookmark.sauna.store_image, size: "200x200" %>
+            <% else %>
+              <%= image_tag 'no_image', size: "200x200" %>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="col-md-6">
+          <div>
+            <%= link_to sauna_path(bookmark.sauna) do %>
+              <%= bookmark.sauna.store_name %>
+            <% end %>
+          </div>
+          <div><%= bookmark.sauna.address %></div>
+          <div><%= bookmark.sauna.business_hours %></div>
+        </div>
       <% end %>
-    </td>
-    <td>
-      <%= link_to sauna_path(bookmark.sauna) do %>
-        <%= bookmark.sauna.store_name %>
-      <% end %>
-    </td>
-    <td>
-      <%= bookmark.sauna.address %>
-    </td>
-    <td>
-      <%= bookmark.sauna.business_hours %>
-    </td>
-  </tr>
-<% end %>
+  </div>
+</div>
+<!--<div>-->
+<!--  <%#= paginate @items %>-->
+<!--</div>-->
