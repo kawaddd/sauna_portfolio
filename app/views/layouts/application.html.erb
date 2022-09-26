@@ -25,6 +25,13 @@
             <ul class="navbar-nav ml-auto">
             <% if admin_signed_in? %>
               <li>
+                <%= link_to "サウナ一覧", admin_saunas_path,class:"nav-link text-dark" %>
+              </li><li>
+                <%= link_to "会員一覧", admin_users_path,class:"nav-link text-dark" %>
+              </li><li>
+                <%= link_to "口コミ一覧", admin_reviews_path,class:"nav-link text-dark" %>
+              </li>
+              <li>
                 <%= link_to "ログアウト", destroy_admin_session_path, method: :delete,class:"nav-link text-dark"  %>
               </li>
             <% elsif user_signed_in? %>

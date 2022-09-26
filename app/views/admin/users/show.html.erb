@@ -19,9 +19,9 @@
         <td>プロフィール画像</td>
         <td>
           <% if @user.profile_image.attached? %>
-            <%= image_tag @user.profile_image, size: "250x250" %>
+            <%= image_tag @user.profile_image, size: "250x200" %>
           <% else %>
-            <%= image_tag 'no_image', size: "250x250" %>
+            <%= image_tag 'no_image', size: "250x200" %>
           <% end %>
         </td>
       </tr>

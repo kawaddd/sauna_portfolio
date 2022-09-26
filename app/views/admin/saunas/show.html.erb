@@ -1,2 +1,38 @@
-<h1>Admin::Saunas#show</h1>
-<p>Find me in app/views/admin/saunas/show.html.erb</p>
+<div class="container" style="height: 500px">
+  <div class="row">
+    <div class="col-md-4">
+      <% if @sauna.store_image.attached? %>
+        <%= image_tag @sauna.store_image, size: "200x200" %>
+      <% else %>
+        <%= image_tag 'no_image', size: "200x200" %>
+      <% end %>
+    </div>
+    <div class="col-md-8">
+      <table>
+        <tr>
+          <td><%= @sauna.store_name %></td>
+        </tr>
+        <tr>
+          <td><%= @sauna.phone_number %></td>
+        </tr>
+        <tr>
+          <td><%= @sauna.address %></td>
+        </tr>
+        <tr>
+          <td><%= @sauna.transportation %></td>
+        </tr>
+        <tr>
+          <td><%= @sauna.business_hours %></td>
+        </tr>
+        <tr>
+          <td><%= @sauna.regular_holiday %></td>
+        </tr>
+        <tr>
+          <td><%= @sauna.homepage_link %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+<%= link_to "口コミ一覧", admin_reviews_path(@sauna.id) %>
+<%= link_to "サウナ編集", edit_admin_sauna_path(@sauna.id) %>

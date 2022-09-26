@@ -2,9 +2,9 @@
   <div class="row my-3 row_profile">
     <div class="col-sm-3">
       <% if @user.profile_image.attached? %>
-        <%= image_tag @user.profile_image, size: "250x250" %>
+        <%= image_tag @user.profile_image, size: "250x200" %>
       <% else %>
-        <%= image_tag 'no_image', size: "250x250" %>
+        <%= image_tag 'no_image', size: "250x200" %>
       <% end %>
     </div>
     <div class="col-sm-4 offset-sm-1">

@@ -16,10 +16,10 @@
           <% end %>
         </div>
         <div class="col-md-6">
-          <div><%= review.user.nickname  %></div>
-          <div><%= review.headline  %></div>
-          <div><%= review.text  %></div>
-          <div><%= review.visit_day  %></div>
+          <div><%= review.user.nickname %></div>
+          <div><%= review.headline %></div>
+          <div><%= review.text %></div>
+          <div><%= review.visit_day %></div>
           <div id="score-rate<%= review.id%>">
             <script>
               $('#score-rate<%= review.id %>').empty();
@@ -33,7 +33,6 @@
                 score: <%= review.score %>,
               });
             </script>
-
           </div>
           <% if review.user_id == current_user.id %>
             <div><%= link_to '口コミを編集する', edit_sauna_review_path(review.sauna_id,review.id) %></div>

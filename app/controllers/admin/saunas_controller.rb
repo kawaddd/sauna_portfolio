@@ -27,9 +27,13 @@ class Admin::SaunasController < ApplicationController
   end
 
   def edit
+    @sauna = Sauna.find(params[:id])
   end
 
   def update
+    sauna = Sauna.find(params[:id])
+    sauna.update(sauna_params)
+    redirect_to admin_sauna_path(sauna)
   end
 
   private

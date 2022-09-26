@@ -81,6 +81,7 @@
 <%= link_to "口コミ一覧", sauna_reviews_path(@sauna.id) %>
 
 <script>
+  $('#score').empty();
   $('#score').raty({
     size     : 36,
     starOff:  '<%= asset_path('star-off.png') %>',

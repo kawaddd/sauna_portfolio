@@ -1,7 +1,8 @@
 <div class="container">
-  <div class="row">
-  <div class="col-md-1"></div>
-  <h3>会員一覧</h3>
+  <div class="row mb-3">
+    <div class="col-3">
+      <h3>会員一覧(全<%= @users.count %>件)</h3>
+    </div>
   </div>
 
   <div class="row">
@@ -10,6 +11,7 @@
         <tr>
           <th>会員ID</th>
           <th>ニックネーム</th>
+          <th>プロフィール写真</th>
           <th>メールアドレス</th>
           <th>ステータス</th>
         </tr>
@@ -19,6 +21,15 @@
         <tr>
           <td><%= user.id  %></td>
           <td><%= link_to user.nickname, admin_user_path(user.id)%></td>
+          <td>
+            <%= link_to admin_user_path(user.id) do %>
+            　<% if user.profile_image.attached? %>
+                <%= image_tag user.profile_image, size: "70x50" %>
+            　<% else %>
+                <%= image_tag 'no_image', size: "70x50" %>
+            　<% end %>
+            <% end %>
+          </td>
           <td><%= user.email %></td>
           <% if user.is_active == true %>
           <td>有効</td>
