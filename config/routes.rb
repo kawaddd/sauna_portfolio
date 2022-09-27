@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     get :about, to: 'homes#about'
     resources :saunas do
       resources :reviews
+        resource :likes, only: [:create, :destroy]
       resource :bookmarks, only: [:create, :destroy]
     end
 
@@ -36,5 +37,4 @@ Rails.application.routes.draw do
       patch :information, to: 'users#update', as: :update_users
     end
   end
-
 end
