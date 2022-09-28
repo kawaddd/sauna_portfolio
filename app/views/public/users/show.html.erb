@@ -16,7 +16,14 @@
     </div>
     <div class="col-sm-3">
       <ul style="list-style: none;">
-        <li class="my-1">いいね数</li>
+        <li class="my-1">いいね数
+           <!--変数を定義し、0を代入。-->
+          <% @likes_count = 0 %>
+           <!--countメソッドを使い、１つの投稿に結びつくイイねを予め定義しておいた@likes_countに足していく。-->
+          <% @user_reviews.each do |review| %>
+            <%= @likes_count += review.likes.count %>
+          <% end %>
+        </li>
         <li class="my-1"><%= link_to "訪れたサウナ", user_visited_saunas_path(current_user),class:"nav-link text-dark" %></li>
         <li class="my-1"><%= link_to "保存済み", user_hozon_saunas_path(current_user),class:"nav-link text-dark" %></li>
         <li class="my-1"><%= link_to "レビュー済み", user_reviewed_saunas_path(current_user),class:"nav-link text-dark" %></li>
@@ -30,5 +37,3 @@
       <h3 class="font-weight-bold">おすすめサウナ</h3>
     </div>
   </div>
-
-  <%= link_to "サウナ一覧", saunas_path %>

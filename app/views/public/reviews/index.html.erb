@@ -27,7 +27,6 @@
                 size      : 36,
                 starOff   : '<%= asset_path('star-off.png') %>',
                 starOn    : '<%= asset_path('star-on.png') %>',
-                starHalf  : '<%= asset_path('star-half.png') %>',
                 half      : false,
                 readOnly: true,
                 score: <%= review.score %>,
@@ -37,17 +36,18 @@
           <% if review.user_id == current_user.id %>
             <div><%= link_to '口コミを編集する', edit_sauna_review_path(review.sauna_id,review.id) %></div>
           <% end %>
-
-          <% if review.like?(current_user) %>
-               <!--一致するレコードが存在する＝すでにいいね済みの場合はdestroyアクションへ-->
-              <%= link_to sauna_review_likes_path(review.id), method: :delete do %>
-                  <span style="color:red;">あ❤︎</span>
-              <% end %>
-          <% else %>
-               <!--一致するレコードが存在しない＝まだいいねしていない場合はcreateアクションへ-->
-              <%= link_to sauna_review_likes_path(review.id), method: :post do %>
-                  <span>あ❤︎</span>
-              <% end %>
+          <% unless review.user_id == current_user.id %>
+            <% if review.liked_by?(current_user) %>
+                 <!--一致するレコードが存在する＝すでにいいね済みの場合はdestroyアクションへ-->
+                <%= link_to sauna_likes_path(review_id: review.id, sauna_id: @sauna), method: :delete do %>
+                    <span style="color:red;">❤︎</span>
+                <% end %>
+            <% else %>
+                 <!--一致するレコードが存在しない＝まだいいねしていない場合はcreateアクションへ-->
+                <%= link_to sauna_likes_path(review_id: review.id, sauna_id: @sauna), method: :post do %>
+                    <span>︎︎♡</span>
+                <% end %>
+            <% end %>
           <% end %>
         </div>
       <% end %>

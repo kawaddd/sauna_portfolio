@@ -36,6 +36,9 @@
               </li>
             <% elsif user_signed_in? %>
               <li>
+                <%= link_to "サウナ一覧", saunas_path,class:"nav-link text-dark" %>
+              </li>
+              <li>
                 <%= link_to "マイページ", user_path(current_user),class:"nav-link text-dark" %>
               </li>
               <li>
