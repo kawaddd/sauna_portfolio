@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-3 offset-md-1 mt-3">
       <h3>
-        <strong>〇〇のサウナ(全<%= Sauna.all.count %>件)</strong>
+        <strong>サウナ(全<%= Sauna.all.count %>件)</strong>
         <!--〇〇には検索したエリアを入れる-->
       </h3>
     </div>
@@ -18,6 +18,14 @@
   <div class="row">
     <% @saunas.each do |sauna| %>
 　　　<div class="col-md-3">
+　　　  <p>
+          <%= sauna.store_name %>
+          <% @average = 0 %>
+          <% sauna.reviews.each do |review| %>
+            <% @average += (review.score / sauna.reviews.count) %>
+          <% end %>
+          (<%= @average.round(1) %>)
+        </p>
         <%= link_to sauna_path(sauna) do %>
         　<% if sauna.store_image.attached? %>
             <%= image_tag sauna.store_image, size: "200x200" %>
@@ -25,7 +33,6 @@
             <%= image_tag 'no_image', size: "200x200" %>
         　<% end %>
         <% end %>
-        <p><%= sauna.store_name  %></p>
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#review-modal-<%= sauna.id %>">
           口コミ投稿
@@ -72,8 +79,9 @@
             size     : 36,
             starOff:  '<%= asset_path('star-off.png') %>',
             starOn : '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
             scoreName: 'review[score]',
-            half: false,
+            half: true,
             readOnly: false,
           });
         </script>

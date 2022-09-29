@@ -1,32 +1,33 @@
 <div class="container" style="height: 500px">
   <div class="row">
-    <div class="col-md-3 offset-md-1 mb-3">
+    <div class="col-md-4 offset-md-1 mb-3">
       <h3><%= @user.nickname %>の口コミ一覧(全<%= @reviews.count %>件)</h3>
     </div>
   </div>
   <div class="row">
       <% @reviews.each do |review| %>
-        <div class="col-md-6">
+        <div class="col-md-4 offset-1 mb-4s">
+          <div><%= review.sauna.store_name %></div>
           <%= link_to sauna_path(review.sauna.id) do %>
             <% if review.sauna.store_image.attached? %>
-              <%= image_tag review.sauna.store_image, size: "200x200" %>
+              <%= image_tag review.sauna.store_image, size: "160x160" %>
             <% else %>
               <%= image_tag 'no_image', size: "200x200" %>
             <% end %>
           <% end %>
         </div>
-        <div class="col-md-6">
-          <div><%= review.sauna.store_name %></div>
-          <div><%= review.headline %></div>
-          <div><%= review.text %></div>
-          <div><%= review.visit_day %></div>
-          <div id="score-rate<%= review.id%>">
+        <div class="col-md-5 offset-1 mt-4">
+          <div class="my-2"><%= review.headline %></div>
+          <div class="my-2"><%= review.text %></div>
+          <div class="my-2"><%= review.visit_day %></div>
+          <div class="my-2" id="score-rate<%= review.id%>">
             <script>
               $('#score-rate<%= review.id %>').empty();
               $('#score-rate<%= review.id %>').raty({
                 size      : 36,
                 starOff   : '<%= asset_path('star-off.png') %>',
                 starOn    : '<%= asset_path('star-on.png') %>',
+                starHalf  : '<%= asset_path('star-half.png') %>',
                 half      : false,
                 readOnly: true,
                 score: <%= review.score %>,

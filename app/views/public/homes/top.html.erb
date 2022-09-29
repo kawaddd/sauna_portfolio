@@ -1,6 +1,37 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
-
-<%= link_to "サウナ一覧",saunas_path,class:"nav-link text-dark" %>
-
-<%= image_tag 'huum-K65M3GbRYq8-unsplash', size: "200x200" %>
+<div class="container" style="height: 1000px">
+  <div class="row">
+    <div class="mx-auto my-3">
+      <h3>
+        ようこそ、サウナー広場へ！</br>
+        このサイトは、関西のサウナのレビューサイトになります。</br>
+        サウナが好きな人やこれからサウナに行きたいと考えている人は、</br>
+        是非このサイトをご活用頂き、今後のサウナーライフにお役立てください。
+      </h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="float-right my-3">
+      サウナの予備知識をつけたい方は<%= link_to "こちら", about_path %>から
+    </div>
+  </div>
+  <div class="row">
+    <div class="mx-auto my-3">
+      <h3>新着情報</h3>
+      <%= image_tag 'huum-K65M3GbRYq8-unsplash', size: "200x200" %>
+    </div>
+  </div>
+  <!--<div class="row">-->
+  <!--    <%# @items.each do |item| %>-->
+  <!--      <div class="col-md-3">-->
+  <!--        <%#= link_to item_path(item) do %>-->
+  <!--          <%# if item.image.attached? %>-->
+  <!--            <%#= image_tag item.image, size: "200x200" %>-->
+  <!--          <%# else %>-->
+  <!--            <%#= image_tag 'no_image', size: "200x200" %>-->
+  <!--          <%# end %>-->
+  <!--        <%# end %>-->
+  <!--        <p><%#= item.name  %></p>-->
+  <!--        <p>¥<%#= item.add_tax_price.to_s(:delimited) %></p>-->
+  <!--      </div>-->
+  <!--    <%# end %>-->
+  </div>
