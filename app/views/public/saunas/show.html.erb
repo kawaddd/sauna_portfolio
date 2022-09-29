@@ -1,6 +1,29 @@
 <div class="container" style="height: 500px">
   <div class="row">
     <div class="col-md-4">
+      <%= @sauna.store_name %>
+      <% @average = 0 %>
+        <% @sauna.reviews.each do |review| %>
+          <% @average += (review.score / @sauna.reviews.count) %>
+        <% end %>
+        <div class="row">
+          <div id="score-rate<%= @sauna.id%>">
+            <script>
+            $(document).on('turbolinks:load', function () {
+              $('#score-rate<%= @sauna.id %>').empty();
+              $('#score-rate<%= @sauna.id %>').raty({
+                size      : 36,
+                starOff   : '<%= asset_path('star-off.png') %>',
+                starOn    : '<%= asset_path('star-on.png') %>',
+                starHalf  : '<%= asset_path('star-half.png') %>',
+                half      : true,
+                readOnly: true,
+                score: <%= @average.round(1) %>,
+              });
+            });
+            </script>
+          </div><%= "　" %>(<%= @average.round(1) %>点)
+        </div>
       <% if @sauna.store_image.attached? %>
         <%= image_tag @sauna.store_image, size: "200x200" %>
       <% else %>
@@ -9,9 +32,6 @@
     </div>
     <div class="col-md-8">
       <table>
-        <tr>
-          <td><%= @sauna.store_name %></td>
-        </tr>
         <tr>
           <td><%= @sauna.phone_number %></td>
         </tr>

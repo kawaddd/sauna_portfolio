@@ -24,15 +24,34 @@
           <% sauna.reviews.each do |review| %>
             <% @average += (review.score / sauna.reviews.count) %>
           <% end %>
-          (<%= @average.round(1) %>)
+          <div class="row">
+            <div id="score-rate<%= sauna.id%>">
+              <script>
+              $(document).on('turbolinks:load', function () {
+                $('#score-rate<%= sauna.id %>').empty();
+                $('#score-rate<%= sauna.id %>').raty({
+                  size      : 36,
+                  starOff   : '<%= asset_path('star-off.png') %>',
+                  starOn    : '<%= asset_path('star-on.png') %>',
+                  starHalf  : '<%= asset_path('star-half.png') %>',
+                  half      : true,
+                  readOnly: true,
+                  score: <%= @average.round(1) %>,
+                });
+              });
+              </script>
+            </div>(<%= @average.round(1) %>点)
+          </div>
         </p>
-        <%= link_to sauna_path(sauna) do %>
-        　<% if sauna.store_image.attached? %>
-            <%= image_tag sauna.store_image, size: "200x200" %>
-        　<% else %>
-            <%= image_tag 'no_image', size: "200x200" %>
-        　<% end %>
-        <% end %>
+        <div>
+          <%= link_to sauna_path(sauna) do %>
+          　<% if sauna.store_image.attached? %>
+              <%= image_tag sauna.store_image, size: "200x200" %>
+          　<% else %>
+              <%= image_tag 'no_image', size: "200x200" %>
+          　<% end %>
+          <% end %>
+        </div>
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#review-modal-<%= sauna.id %>">
           口コミ投稿

@@ -21,6 +21,28 @@
               <%= bookmark.sauna.store_name %>
             <% end %>
           </div>
+          <% @average = 0 %>
+          <% bookmark.sauna.reviews.each do |review| %>
+            <% @average += (review.score / bookmark.sauna.reviews.count) %>
+          <% end %>
+          <div class="row">
+            <div id="score-rate<%= bookmark.sauna.id%>">
+              <script>
+              $(document).on('turbolinks:load', function () {
+                $('#score-rate<%= bookmark.sauna.id %>').empty();
+                $('#score-rate<%= bookmark.sauna.id %>').raty({
+                  size      : 36,
+                  starOff   : '<%= asset_path('star-off.png') %>',
+                  starOn    : '<%= asset_path('star-on.png') %>',
+                  starHalf  : '<%= asset_path('star-half.png') %>',
+                  half      : true,
+                  readOnly: true,
+                  score: <%= @average.round(1) %>,
+                });
+              });
+              </script>
+            </div>(<%= @average.round(1) %>点)
+          </div>
           <div><%= bookmark.sauna.address %></div>
           <div><%= bookmark.sauna.business_hours %></div>
         </div>
