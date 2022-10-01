@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       resources :reviews
         resource :likes, only: [:create, :destroy]
       resource :bookmarks, only: [:create, :destroy]
+      resource :visits, only: [:create, :destroy]
     end
 
     resources :users do

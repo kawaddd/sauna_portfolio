@@ -1,26 +1,34 @@
 <div class="container" style="height: 500px">
   <div class="row">
-    <div class="col-md-3 offset-md-1 mb-3">
-      <h3><%= @user.nickname %>の保存済み一覧(全<%= @bookmarks.count %>件)</h3>
+    <div class="col-md-4 offset-md-1 mb-3">
+      <h3><%= @user.nickname %>の保存済み(全<%= @bookmarks.count %>件)</h3>
     </div>
   </div>
   <div class="row">
       <% @bookmarks.each do |bookmark| %>
-        <div class="col-md-6">
+        <div class="col-md-4 offset-1 mb-4">
           <%= link_to sauna_path(bookmark.sauna) do %>
             <% if bookmark.sauna.store_image.attached? %>
-              <%= image_tag bookmark.sauna.store_image, size: "200x200" %>
+              <%= image_tag bookmark.sauna.store_image, size: "170x170" %>
             <% else %>
-              <%= image_tag 'no_image', size: "200x200" %>
+              <%= image_tag 'no_image', size: "170x170" %>
             <% end %>
           <% end %>
         </div>
-        <div class="col-md-6">
-          <div>
+        <div class="col-md-2 offset-1 mt-4">
+          <div class="my-2">店名</div>
+          <div class="my-2">住所</div>
+          <div class="my-2">営業時間</div>
+          <div class="my-2">お店の評価</div>
+        </div>
+        <div class="col-md-3 mt-4">
+          <div class="my-2">
             <%= link_to sauna_path(bookmark.sauna) do %>
               <%= bookmark.sauna.store_name %>
             <% end %>
           </div>
+          <div class="my-2"><%= bookmark.sauna.address %></div>
+          <div class="my-2"><%= bookmark.sauna.business_hours %></div>
           <% @average = 0 %>
           <% bookmark.sauna.reviews.each do |review| %>
             <% @average += (review.score / bookmark.sauna.reviews.count) %>
@@ -43,8 +51,6 @@
               </script>
             </div>(<%= @average.round(1) %>点)
           </div>
-          <div><%= bookmark.sauna.address %></div>
-          <div><%= bookmark.sauna.business_hours %></div>
         </div>
       <% end %>
   </div>

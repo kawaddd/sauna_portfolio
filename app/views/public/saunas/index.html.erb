@@ -107,11 +107,28 @@
         <% end %>
 
         <!--サウナのブックマーク機能-->
-        <% if sauna.bookmarked_by?(current_user) %>
-          <td><%= link_to "ブックマークを外す", sauna_bookmarks_path(sauna), method: :delete %></td>
-        <% else %>
-          <td><%= link_to "ブックマーク", sauna_bookmarks_path(sauna), method: :post %></td>
-        <% end %>
+        <div>
+          <% if sauna.bookmarked_by?(current_user) %>
+            <%= link_to sauna_bookmarks_path(sauna), method: :delete do %>
+              <button type="button" class="btn border-success">ブックマークを外す</button>
+            <% end %>
+          <% else %>
+            <%= link_to sauna_bookmarks_path(sauna), method: :post do %>
+              <button type="button" class="btn btn-success">ブックマーク</button>
+            <% end %>
+          <% end %>
+        </div>
+        <div>
+          <% if sauna.visited_by?(current_user) %>
+            <%= link_to sauna_visits_path(sauna), method: :delete do %>
+              <button type="button" class="btn border-danger">訪れたから外す</button>
+            <% end %>
+          <% else %>
+            <%= link_to sauna_visits_path(sauna), method: :post do %>
+              <button type="button" class="btn btn-danger">訪れた</button>
+            <% end %>
+          <% end %>
+        </div>
 　　　</div>
     <% end %>
   </div>

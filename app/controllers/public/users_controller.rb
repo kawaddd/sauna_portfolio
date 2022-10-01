@@ -26,6 +26,7 @@ class Public::UsersController < ApplicationController
 
   def visited_saunas
     @user = User.find(params[:user_id])
+    @visits = Visit.where(user_id: current_user.id)
   end
 
   def unsubscribe

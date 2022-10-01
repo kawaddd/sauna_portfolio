@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
+  has_many :visits, dependent: :destroy
   has_many :recommendations
   has_many :comments
 
