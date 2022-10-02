@@ -19,3 +19,5 @@ import "../stylesheets/application";
 
 window.$ = window.jQuery = require('jquery');
 import "packs/raty"
+
+import '@fortawesome/fontawesome-free/js/all';

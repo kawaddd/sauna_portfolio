@@ -17,6 +17,8 @@ class Public::ReviewsController < ApplicationController
   end
 
   def edit
+    # sauna_id = params[:sauna_id]
+    # review_id = params[:id]
     @review = Review.find(params[:id])
     @sauna = Sauna.find(params[:sauna_id])
   end

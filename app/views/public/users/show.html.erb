@@ -25,10 +25,12 @@
           <% end %>
           <%= @likes_count %>
         </li>
-        <li class="my-1"><%= link_to "訪れたサウナ", user_visited_saunas_path(current_user),class:"nav-link text-dark" %></li>
-        <li class="my-1"><%= link_to "保存済み", user_hozon_saunas_path(current_user),class:"nav-link text-dark" %></li>
-        <li class="my-1"><%= link_to "レビュー済み", user_reviewed_saunas_path(current_user),class:"nav-link text-dark" %></li>
-        <li class="my-1"><%= link_to "マイページ設定", edit_user_path,class:"nav-link text-dark" %></li>
+        <li class="my-1"><%= link_to "訪れたサウナ", user_visited_saunas_path(@user),class:"nav-link text-dark" %></li>
+        <li class="my-1"><%= link_to "保存済み", user_hozon_saunas_path(@user),class:"nav-link text-dark" %></li>
+        <li class="my-1"><%= link_to "レビュー済み", user_reviewed_saunas_path(@user),class:"nav-link text-dark" %></li>
+        <% if @user == current_user %>
+          <li class="my-1"><%= link_to "マイページ設定", edit_user_path,class:"nav-link text-dark" %></li>
+        <% end %>
       </ul>
     </div>
   </div>

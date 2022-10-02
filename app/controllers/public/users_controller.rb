@@ -15,7 +15,7 @@ class Public::UsersController < ApplicationController
   end
 
   def reviewed_saunas
-    @user = current_user
+    @user = User.find(params[:user_id])
     @reviews = @user.reviews
   end
 

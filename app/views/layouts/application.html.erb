@@ -16,8 +16,14 @@
           <h1 class="heading">
             <%= link_to "サウナ広場", root_path,class:"nav-link text-dark" %>
           </h1>
-          <!--<a class="navbar-brand p-3" href="/"><%#= image_tag('logo.png') %></a>-->
-          <!--ここでエラー出る-->
+          <div class="post_search navbar navbar-expand-lg navbar-light">
+            <%= form_with url: search_path, method: :get, local: true do |f| %>
+              <%= f.text_field :address, class: 'form-control', placeholder: "例）〇〇県" %>
+              <%= f.button :type => "submit" do %>
+                <i class="fas fa-search"></i>
+              <% end %>
+            <% end %>
+          </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -26,9 +32,11 @@
             <% if admin_signed_in? %>
               <li>
                 <%= link_to "サウナ一覧", admin_saunas_path,class:"nav-link text-dark" %>
-              </li><li>
+              </li>
+              <li>
                 <%= link_to "会員一覧", admin_users_path,class:"nav-link text-dark" %>
-              </li><li>
+              </li>
+              <li>
                 <%= link_to "口コミ一覧", admin_reviews_path,class:"nav-link text-dark" %>
               </li>
               <li>

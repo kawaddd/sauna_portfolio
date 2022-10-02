@@ -1,6 +1,6 @@
 class Admin::ReviewsController < ApplicationController
-  def show
-    @reviews = Review.where(sauna_id: params[:id])
+  def index
+    @reviews = Review.all
   end
 
   def destroy

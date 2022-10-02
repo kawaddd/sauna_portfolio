@@ -1,0 +1,135 @@
+<div class="container" style="height: 500px">
+  <div class="row">
+    <div class="col-md-3 offset-md-1 mt-3">
+      <h3>
+        <strong>サウナ(全<%= Sauna.all.count %>件)</strong>
+        <!--〇〇には検索したエリアを入れる-->
+      </h3>
+    </div>
+  </div>
+  <!--<div>-->
+  <!--  <ul style="list-style: none;">-->
+  <!--    <li>ランキング</li>-->
+  <!--    <li>口コミ数</li>-->
+  <!--    <li>ニューオープン</li>-->
+  <!--  </ul>-->
+  <!--</div>-->
+  <!--13~17どうやって出すか未定-->
+  <div class="row">
+    <% saunas.each do |sauna| %>
+　　　<div class="col-md-3">
+　　　  <p>
+          <%= sauna.store_name %>
+          <% @average = 0 %>
+          <% sauna.reviews.each do |review| %>
+            <% @average += (review.score / sauna.reviews.count) %>
+          <% end %>
+          <div class="row">
+            <div id="score-rate<%= sauna.id%>">
+              <script>
+              $(document).on('turbolinks:load', function () {
+                $('#score-rate<%= sauna.id %>').empty();
+                $('#score-rate<%= sauna.id %>').raty({
+                  size      : 36,
+                  starOff   : '<%= asset_path('star-off.png') %>',
+                  starOn    : '<%= asset_path('star-on.png') %>',
+                  starHalf  : '<%= asset_path('star-half.png') %>',
+                  half      : true,
+                  readOnly: true,
+                  score: <%= @average.round(1) %>,
+                });
+              });
+              </script>
+            </div>(<%= @average.round(1) %>点)
+          </div>
+        </p>
+        <div>
+          <%= link_to sauna_path(sauna) do %>
+          　<% if sauna.store_image.attached? %>
+              <%= image_tag sauna.store_image, size: "200x200" %>
+          　<% else %>
+              <%= image_tag 'no_image', size: "200x200" %>
+          　<% end %>
+          <% end %>
+        </div>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#review-modal-<%= sauna.id %>">
+          口コミ投稿
+        </button>
+        <!-- Modal -->
+        <%= form_with model: [sauna, review],local: true do |f| %>
+        <div class="modal fade" id="review-modal-<%= sauna.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><%= sauna.store_name %></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <%= f.label :タイトル %>
+                  <%= f.text_field :headline, class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                  <%= f.label :本文 %>
+                  <%= f.text_area :text, class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                  <%= f.label :訪問日 %>
+                  <%= f.date_select :visit_day, use_month_numbers: true,start_year: 2010, end_year: (Time.now.year), default: Date.new(2020, 1, 1) %>
+                </div>
+                <div class="form-group row" id="score-<%= sauna.id %>">
+                  <%= f.label :score,'評価 ', class:'col-md-3 col-form-label' %>
+                </div>
+                <%= f.hidden_field :sauna_id, :value => sauna.id %>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <%= f.submit class: 'btn btn-success' %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script>
+          $('#score-<%= sauna.id %>').empty();
+          $('#score-<%= sauna.id %>').raty({
+            size     : 36,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn : '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            scoreName: 'review[score]',
+            half: true,
+            readOnly: false,
+          });
+        </script>
+        <% end %>
+
+        <!--サウナのブックマーク機能-->
+        <div>
+          <% if sauna.bookmarked_by?(current_user) %>
+            <%= link_to sauna_bookmarks_path(sauna), method: :delete do %>
+              <button type="button" class="btn border-success">ブックマークを外す</button>
+            <% end %>
+          <% else %>
+            <%= link_to sauna_bookmarks_path(sauna), method: :post do %>
+              <button type="button" class="btn btn-success">ブックマーク</button>
+            <% end %>
+          <% end %>
+        </div>
+        <div>
+          <% if sauna.visited_by?(current_user) %>
+            <%= link_to sauna_visits_path(sauna), method: :delete do %>
+              <button type="button" class="btn border-danger">訪れたから外す</button>
+            <% end %>
+          <% else %>
+            <%= link_to sauna_visits_path(sauna), method: :post do %>
+              <button type="button" class="btn btn-danger">訪れた</button>
+            <% end %>
+          <% end %>
+        </div>
+　　　</div>
+    <% end %>
+  </div>
+</div>
