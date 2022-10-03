@@ -1,59 +1,119 @@
-<h2>新規登録</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-<%#= form_with model: @user, url: user_registration_path do |f| %>
-  <%= render "public/shared/error_messages", resource: resource %>
-
-  <div class="field">
-  <%= f.label :ニックネーム %><br>
-  <%= f.text_field :nickname %>
-  </div>
-
-  <div class="field">
-    <%= f.label :プロフィール画像 %><br />
-    <%= f.file_field :profile_image, accept: "image/*" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :自己紹介文 %><br />
-    <%= f.text_area :self_introduction %>
-  </div>
-
-
-  <div class="field">
-    <%= f.label :生年月日 %><br />
-    <%= f.date_select :birth_date, use_month_numbers: true,start_year: 1930, end_year: (Time.now.year), default: Date.new(1998, 1, 1) %>
-  </div>
-
-  <div class="field">
-    <%= f.label :性別 %><br />
-    <%= f.radio_button :gender, :male, checked: true %>
-    <%= f.label :gender, "男性", {value: :男性, style: "display: inline-block;"} %>
-    <%= f.radio_button :gender, :female %>
-    <%= f.label :gender, "女性", {value: :女性, style: "display: inline-block;"} %>
-  </div>
-
-  <div class="field">
-    <%= f.label :メールアドレス %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :パスワード %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> 文字以上)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :パスワード確認用 %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+<%= form_with model: @user, url: user_registration_path do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+  <div class="container">
+    <div class="card-container">
+      <div class="card-body">
+          <h3 class="card-title text-center mb-4 mt-1">新規登録</h3>
+          <hr>
+          <form>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                      <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                    </svg>
+                  </span>
+                </div>
+                <%= f.text_field :nickname, class: "form-control", placeholder: "ニックネーム", type: "nickname" %>
+              </div> <!-- input-group.// -->
+            </div> <!-- form-group// -->
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+                      <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383l-4.758 2.855L15 11.114v-5.73zm-.034 6.878L9.271 8.82 8 9.583 6.728 8.82l-5.694 3.44A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.739zM1 11.114l4.758-2.876L1 5.383v5.73z"/>
+                    </svg>
+                  </span>
+                </div>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "メールアドレス", type: "email" %>
+              </div> <!-- input-group.// -->
+            </div> <!-- form-group// -->
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">
+                      <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/>
+                    </svg>
+                  </span>
+                </div>
+                <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "パスワード（6文字以上）", type: "password" %>
+              </div> <!-- input-group.// -->
+            </div> <!-- form-group// -->
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">
+                      <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/>
+                    </svg>
+                  </span>
+                </div>
+                <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "パスワード（確認用）", type: "password" %>
+              </div> <!-- input-group.// -->
+            </div> <!-- form-group// -->
+            <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-text" viewBox="0 0 16 16">
+                      <path d="M5 4a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zM5 8a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1H5z"/>
+                      <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z"/>
+                    </svg>
+                  </span>
+                </div>
+                <%= f.text_area :self_introduction, class: "form-control", placeholder: "自己紹介文", type: "self_introduction" %>
+              </div> <!-- input-group.// -->
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gender-male" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd" d="M9.5 2a.5.5 0 0 1 0-1h5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V2.707L9.871 6.836a5 5 0 1 1-.707-.707L13.293 2H9.5zM6 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gender-female" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd" d="M8 1a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM3 5a5 5 0 1 1 5.5 4.975V12h2a.5.5 0 0 1 0 1h-2v2.5a.5.5 0 0 1-1 0V13h-2a.5.5 0 0 1 0-1h2V9.975A5 5 0 0 1 3 5z"/>
+                    </svg>
+                  </span>
+                </div>
+                <%= f.radio_button :gender, :male, checked: true %>
+                <%= f.label :gender, "男性", {value: :男性, style: "display: inline-block;"} %>
+                <%= f.radio_button :gender, :female %>
+                <%= f.label :gender, "女性", {value: :女性, style: "display: inline-block;"} %>
+              </div> <!-- input-group.// -->
+            </div> <!-- form-group// -->
+            <div class="form-group">
+              <%= f.label :生年月日 %><br/>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-emoji-laughing" viewBox="0 0 16 16">
+                      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                      <path d="M12.331 9.5a1 1 0 0 1 0 1A4.998 4.998 0 0 1 8 13a4.998 4.998 0 0 1-4.33-2.5A1 1 0 0 1 4.535 9h6.93a1 1 0 0 1 .866.5zM7 6.5c0 .828-.448 0-1 0s-1 .828-1 0S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 0-1 0s-1 .828-1 0S9.448 5 10 5s1 .672 1 1.5z"/>
+                    </svg>
+                  </span>
+                </div>
+                <%= f.date_select :birth_date, use_month_numbers: true,start_year: 1930, end_year: (Time.now.year), default: Date.new(1998, 1, 1), type: "birth_date" %>
+              </div> <!-- input-group.// -->
+            </div> <!-- form-group// -->
+            <div class="form-group">
+              <%= f.label :プロフィール画像 %><br />
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-image" viewBox="0 0 16 16">
+                      <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                      <path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z"/>
+                    </svg>
+                  </span>
+                </div>
+                <%= f.file_field :profile_image, accept: "image/*" %>
+              </div> <!-- input-group.// -->
+            </div> <!-- form-group// -->          <div class="form-group">
+            </div> <!-- form-group// -->
+          </form>
+      </div>
+    </div>
   </div>
 <% end %>
-
-<%= render "public/shared/links" %>
