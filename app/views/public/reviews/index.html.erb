@@ -1,7 +1,7 @@
 <div class="container" style="height: 500px">
   <div class="row">
     <div class="col-md-11 offset-md-1 mb-3">
-      <h3><%= @sauna.store_name %>の口コミ一覧(全<%= @reviews.count %>件)</h3>
+      <h3><%= @sauna.store_name %>の口コミ(全<%= @reviews.count %>件)</h3>
     </div>
   </div>
   <div class="row">
@@ -10,9 +10,9 @@
           <div><%= review.user.nickname %><%= " " %><%= Date.parse(review.created_at.to_s) %></div>
           <%= link_to user_path(review.user) do %>
             <% if review.user.profile_image.attached? %>
-              <%= image_tag review.user.profile_image, size: "170x170" %>
+              <%= image_tag review.user.profile_image, size: "200x200" %>
             <% else %>
-              <%= image_tag 'no_image', size: "170x170" %>
+              <%= image_tag 'no_image', size: "200x200" %>
             <% end %>
           <% end %>
         </div>
@@ -22,7 +22,7 @@
           <div class="my-2">訪問日</div>
           <div class="my-2">評価</div>
           <% unless review.user_id == current_user.id %>
-            いいね
+          <div class="my-2">いいね</div>
           <% end %>
         </div>
         <div class="col-md-3 mt-4">
@@ -43,10 +43,7 @@
               });
             </script>
           </div>
-          <div>
-            <% if review.user_id == current_user.id %>
-              <div><%= link_to '口コミを編集する', edit_sauna_review_path(review.sauna_id,review.id) %></div>
-            <% end %>
+          <div class="my-2">
             <% unless review.user_id == current_user.id %>
               <% if review.liked_by?(current_user) %>
                    <!--一致するレコードが存在する＝すでにいいね済みの場合はdestroyアクションへ-->
@@ -61,9 +58,14 @@
               <% end %>
             <% end %>
           </div>
-          <div>
+          <div class="my-2">
             <% unless review.user_id == current_user.id %>
-              コメントする<%#= link_to sauna_review_path(review_id: review.id, sauna_id: @sauna) %>
+              <%= link_to "コメントする", sauna_review_path(id: review.id, sauna_id: @sauna) %>(<%= review.comments.count %>件)
+            <% end %>
+          </div>
+          <div class="my-2">
+            <% if review.user_id == current_user.id %>
+              <%= link_to '口コミを編集する', edit_sauna_review_path(review.sauna_id,review.id) %>
             <% end %>
           </div>
         </div>

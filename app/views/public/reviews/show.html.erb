@@ -1,20 +1,23 @@
 <h1>投稿詳細ページ</h1>
 <h3><%= @review.user.nickname %></h3>
-<h3><%= @review.comment %></h3>
+<h3><%= @review.headline %></h3>
+<h3><%= @review.text %></h3>
 
 <h2>コメント一覧</h2>
 <% @comments.each do |comment| %>
   <div>
-    <a href="/users/<%= @review.user.id %>"><%= comment.user.nickname %></a>
+    <a href="/users/<%= comment.user.id %>"><%= comment.user.nickname %></a>
     <%= comment.comment %>
+    <%= link_to '削除する', sauna_review_comment_path(review_id: @review, sauna_id: @sauna, id: comment.id),method: :delete,"data-confirm" => "本当に消しますか？",class: "btn btn-danger col-md-2 offset-sm-1" %>
     <hr>
   </div>
 <% end %>
 
-<%= form_for [@review, @comment] do |f| %>
+<%= form_with url: sauna_review_comments_path(@sauna, @review),local: true do |f| %>
   <%= f.text_field :comment %>
   <br>
   <%= f.submit 'コメントする' %>
 <% end %>
 
-<%= link_to "ホームへ戻る", sauna_reviews_path(sauna.id) %>
+<%#= link_to "口コミ一覧に戻る", sauna_review_path(id: review.id, sauna_id: @sauna) %>
+

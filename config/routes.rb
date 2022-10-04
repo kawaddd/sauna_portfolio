@@ -21,8 +21,10 @@ Rails.application.routes.draw do
     get :about, to: 'homes#about'
     get "search" => "searches#search"
     resources :saunas do
-      resources :reviews
-        resource :likes, only: [:create, :destroy]
+      resources :reviews do
+        resources :comments, only: [:create, :destroy]
+      end
+      resource :likes, only: [:create, :destroy]
       resource :bookmarks, only: [:create, :destroy]
       resource :visits, only: [:create, :destroy]
     end

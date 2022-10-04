@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(version: 2022_10_02_070454) do
     t.integer "sauna_id", null: false
     t.float "score", null: false
     t.string "headline", null: false
-    t.text "text", null: false
+    t.text " =", null: false
     t.date "visit_day", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

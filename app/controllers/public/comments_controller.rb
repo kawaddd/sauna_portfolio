@@ -3,7 +3,8 @@ class Public::CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     @comment.user_id = current_user.id
-    if @comment.save
+    @comment.review_id = params[:review_id]
+    if @comment.save!
       redirect_back(fallback_location: root_path)
     else
       redirect_back(fallback_location: root_path)
@@ -12,13 +13,16 @@ class Public::CommentsController < ApplicationController
   end
 
   def destroy
+    # review = params[:review_id]
+    # sauna = params[:sauna_id]
     comment = Comment.find(params[:id])
     comment.destroy!
-    redirect_to sauna_review_path(review_id: review.id, sauna_id: @sauna)
+    # redirect_to sauna_review_path(id: review, sauna_id: sauna)
+    redirect_to sauna_review_path(id: params[:review_id], sauna_id: params[:sauna_id])
   end
 
   private
   def comment_params
-    params.require(:comment).permit(:comment)
+    params.permit(:comment)
   end
 end
