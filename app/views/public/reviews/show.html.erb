@@ -1,0 +1,20 @@
+<h1>投稿詳細ページ</h1>
+<h3><%= @review.user.nickname %></h3>
+<h3><%= @review.comment %></h3>
+
+<h2>コメント一覧</h2>
+<% @comments.each do |comment| %>
+  <div>
+    <a href="/users/<%= @review.user.id %>"><%= comment.user.nickname %></a>
+    <%= comment.comment %>
+    <hr>
+  </div>
+<% end %>
+
+<%= form_for [@review, @comment] do |f| %>
+  <%= f.text_field :comment %>
+  <br>
+  <%= f.submit 'コメントする' %>
+<% end %>
+
+<%= link_to "ホームへ戻る", sauna_reviews_path(sauna.id) %>

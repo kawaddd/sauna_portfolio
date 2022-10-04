@@ -121,7 +121,7 @@
         <div>
           <% if sauna.visited_by?(current_user) %>
             <%= link_to sauna_visits_path(sauna), method: :delete do %>
-              <button type="button" class="btn border-danger">訪れたから外す</button>
+              <button type="button" class="btn border-danger">訪れたを外す</button>
             <% end %>
           <% else %>
             <%= link_to sauna_visits_path(sauna), method: :post do %>
