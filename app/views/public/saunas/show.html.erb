@@ -98,7 +98,7 @@
 </div>
 <% end %>
 
-<%= link_to "口コミ一覧", sauna_reviews_path(@sauna.id) %>
+<%= link_to "口コミ一覧", sauna_reviews_path(@sauna.id), data: {"turbolinks" => false} %>
 
 <script>
   $('#score').empty();

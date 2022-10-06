@@ -10,7 +10,7 @@
     <div class="col-sm-4 offset-sm-1">
       <div class="nav-link text-dark">
         <h5><%= @user.nickname %></br>
-        （<%= @user.birth_date %><%= @user.gender %>）</h5>
+        （<%= @user.birth_date %><%= gender_ja(@user.gender) %>）</h5>
       </div>
       <div class="nav-link text-dark"><%= @user.self_introduction %></div>
     </div>
@@ -19,11 +19,17 @@
         <li class="my-1">いいね数
            <!--変数を定義し、0を代入。-->
           <% @likes_count = 0 %>
+          <% @comment_likes_count = 0 %>
            <!--countメソッドを使い、１つの投稿に結びつくイイねを予め定義しておいた@likes_countに足していく。-->
           <% @user_reviews.each do |review| %>
             <% @likes_count += review.likes.count %>
           <% end %>
-          <%= @likes_count %>
+
+          <% @user_comments.each do |comment| %>
+            <% @comment_likes_count += comment.comment_likes.count %>
+          <% end %>
+
+          <%= @likes_count + @comment_likes_count %>
         </li>
         <li class="my-1"><%= link_to "訪れたサウナ", user_visited_saunas_path(@user),class:"nav-link text-dark" %></li>
         <li class="my-1"><%= link_to "保存済み", user_hozon_saunas_path(@user),class:"nav-link text-dark" %></li>

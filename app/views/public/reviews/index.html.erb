@@ -59,9 +59,9 @@
             <% end %>
           </div>
           <div class="my-2">
-            <% unless review.user_id == current_user.id %>
+            <%# unless review.user_id == current_user.id %>
               <%= link_to "コメントする", sauna_review_path(id: review.id, sauna_id: @sauna) %>(<%= review.comments.count %>件)
-            <% end %>
+            <%# end %>
           </div>
           <div class="my-2">
             <% if review.user_id == current_user.id %>

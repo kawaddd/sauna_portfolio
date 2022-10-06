@@ -3,6 +3,7 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     # 取得したユーザーに結びついている全ての投稿を取得し、@user_postsに代入する。
     @user_reviews = @user.reviews
+    @user_comments = @user.comments
   end
 
   def edit
