@@ -8,6 +8,21 @@
   <div>
     <a href="/users/<%= comment.user.id %>"><%= comment.user.nickname %></a>
     <%= comment.comment %>
+
+    <%# unless comment.user_id == current_user.id %>
+      <%# if comment.comment_liked_by?(current_user) %>
+           <!--一致するレコードが存在する＝すでにいいね済みの場合はdestroyアクションへ-->
+          <%#= link_to sauna_review_comment_comment_like_path(sauna_id: @sauna, review_id: @review, comment_id: comment.id, id: comment_like_id ), method: :delete do %>
+              <!--<span style="color:red;">❤︎</span>-->
+          <%# end %>
+      <%# else %>
+           <!--一致するレコードが存在しない＝まだいいねしていない場合はcreateアクションへ-->
+          <%#= link_to sauna_review_comment_comment_likes_path(sauna_id: @sauna, review_id: @review, comment_id: comment.id ), method: :post do %>
+              <!--<span>︎︎♡</span>-->
+          <%# end %>
+      <%# end %>
+    <%# end %>
+
     <%= link_to '削除する', sauna_review_comment_path(review_id: @review, sauna_id: @sauna, id: comment.id),method: :delete,"data-confirm" => "本当に消しますか？",class: "btn btn-danger col-md-2 offset-sm-1" %>
     <hr>
   </div>

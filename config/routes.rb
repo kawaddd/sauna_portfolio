@@ -22,7 +22,9 @@ Rails.application.routes.draw do
     get "search" => "searches#search"
     resources :saunas do
       resources :reviews do
-        resources :comments, only: [:create, :destroy]
+        resources :comments, only: [:create, :destroy] do
+          resources :comment_likes, only: [:create, :destroy]
+        end
       end
       resource :likes, only: [:create, :destroy]
       resource :bookmarks, only: [:create, :destroy]
