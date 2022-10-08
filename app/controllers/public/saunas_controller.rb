@@ -1,7 +1,6 @@
 class Public::SaunasController < ApplicationController
   def index
-    @saunas = Sauna.where(user_id: params[:user_id])
-    # @saunas = Sauna.page(params[:page])
+    @saunas = Sauna.where(user_id: params[:user_id]).page(params[:page]).per(3)
     @review = Review.new
   end
 

@@ -17,16 +17,19 @@ class Public::UsersController < ApplicationController
 
   def reviewed_saunas
     @user = User.find(params[:user_id])
+    @users = User.page(params[:page])
     @reviews = @user.reviews
   end
 
   def hozon_saunas
     @user = User.find(params[:user_id])
+    @users = User.page(params[:page])
     @bookmarks = Bookmark.where(user_id: current_user.id)
   end
 
   def visited_saunas
     @user = User.find(params[:user_id])
+    @users = User.page(params[:page])
     @visits = Visit.where(user_id: current_user.id)
   end
 

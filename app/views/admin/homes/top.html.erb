@@ -1,1 +1,78 @@
-admin/top
+<div class="container" style="height: 1000px">
+  <div class="row">
+    <div class="mx-auto my-3">
+      <h3>
+        ようこそ、サウナ広場へ！</br>
+        このサイトは、関西のサウナのレビューサイトになります。</br>
+        サウナが好きな人やこれからサウナに行きたいと考えている人は、</br>
+        是非このサイトをご活用頂き、今後のサウナーライフにお役立てください。
+      </h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="mx-auto">
+      <div class="my-5">
+        サウナの予備知識をつけたい方は<%= link_to "こちら", about_path %>から
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-5 offset-1">
+      <h3 class="my-3">ユーザーランキング(トップ3)</h3>
+      <table>
+        <tr>
+          <td class="col-2">順位</td>
+          <td class="col-3">ユーザー名</td>
+          <td class="col-4">プロフィール画像</td>
+          <td class="col-3">いいね数</td>
+        </tr>
+        <% @user_ranks.each_with_index do |user, index| %>
+        <tr>
+          <td class="col-1"><%= index + 1 %></td>
+          <td class="col-3"><%= link_to user.nickname, admin_user_path(user.id)%></td>
+          <td class="col-4">
+            <%= link_to user_path(user.id) do %>
+            　<% if user.profile_image.attached? %>
+                <%= image_tag user.profile_image, size: "100x100" %>
+            　<% else %>
+                <%= image_tag 'no_image', size: "100x100" %>
+            　<% end %>
+            <% end %>
+          </td>
+          <td class="col-3"><%= user.likes_count %></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+    <div class="col-5 offset-1">
+      <h3 class="my-3">サウナランキング(トップ３)</h3>
+      <table>
+        <tr>
+          <td class="col-2">順位</td>
+          <td class="col-3">ユーザー名</td>
+          <td class="col-4">プロフィール画像</td>
+          <td class="col-3">評価</td>
+        </tr>
+        <% @user_ranks.each_with_index do |user, index| %>
+        <tr>
+          <td class="col-1"><%= index + 1 %></td>
+          <td class="col-3"><%= link_to user.nickname, admin_user_path(user.id)%></td>
+          <td class="col-4">
+            <%= link_to admin_user_path(user.id) do %>
+            　<% if user.profile_image.attached? %>
+                <%= image_tag user.profile_image, size: "100x100" %>
+            　<% else %>
+                <%= image_tag 'no_image', size: "100x100" %>
+            　<% end %>
+            <% end %>
+          </td>
+          <td class="col-3"><%= user.likes_count %></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<%#= image_tag 'huum-K65M3GbRYq8-unsplash', size: "200x200" %>

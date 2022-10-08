@@ -2,19 +2,10 @@
   <div class="row">
     <div class="col-md-3 offset-md-1 mt-3">
       <h3>
-        <strong>サウナ(全<%= Sauna.all.count %>件)</strong>
-        <!--〇〇には検索したエリアを入れる-->
+        <strong>サウナ(全<%= saunas.size %>件)</strong>
       </h3>
     </div>
   </div>
-  <!--<div>-->
-  <!--  <ul style="list-style: none;">-->
-  <!--    <li>ランキング</li>-->
-  <!--    <li>口コミ数</li>-->
-  <!--    <li>ニューオープン</li>-->
-  <!--  </ul>-->
-  <!--</div>-->
-  <!--13~17どうやって出すか未定-->
   <div class="row">
     <% saunas.each do |sauna| %>
 　　　<div class="col-md-3">

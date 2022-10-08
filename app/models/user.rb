@@ -14,6 +14,21 @@ class User < ApplicationRecord
   has_many :comment_likes, dependent: :destroy
 
   has_one_attached :profile_image
+
+  def likes_count
+    likes_count = 0
+    comment_likes_count = 0
+
+    self.reviews.each do |review|
+      likes_count += review.likes.count
+    end
+
+    self.comments.each do |comment|
+      comment_likes_count += comment.comment_likes.count
+    end
+
+    likes_count + comment_likes_count
+  end
 end
 
 
