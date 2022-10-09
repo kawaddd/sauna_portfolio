@@ -17,20 +17,20 @@ class Public::UsersController < ApplicationController
 
   def reviewed_saunas
     @user = User.find(params[:user_id])
-    @users = User.page(params[:page])
-    @reviews = @user.reviews
+    @reviews = @user.reviews.page(params[:page]).per(3)
+    @count = @user.reviews.count
   end
 
   def hozon_saunas
     @user = User.find(params[:user_id])
-    @users = User.page(params[:page])
-    @bookmarks = Bookmark.where(user_id: current_user.id)
+    @bookmarks = Bookmark.where(user_id: current_user.id).page(params[:page]).per(1)
+    @count = @user.bookmarks.count
   end
 
   def visited_saunas
     @user = User.find(params[:user_id])
-    @users = User.page(params[:page])
-    @visits = Visit.where(user_id: current_user.id)
+    @visits = Visit.where(user_id: current_user.id).page(params[:page]).per(1)
+    @count = @user.visits.count
   end
 
   def unsubscribe

@@ -2,14 +2,16 @@ class Public::ReviewsController < ApplicationController
   before_action :authenticate_user!, expect: :index
   def index
     @sauna = Sauna.find(params[:sauna_id])
-    @reviews = @sauna.reviews
+    @reviews = @sauna.reviews.page(params[:page]).per(5)
+    @count = @sauna.reviews.count
   end
 
   def show
     @sauna = Sauna.find(params[:sauna_id])
     @review = Review.find(params[:id])
-    @comments = @review.comments
+    @comments = @review.comments.page(params[:page]).per(2)
     @comment = Comment.new
+    @count = @review.comments.count
   end
 
   def create

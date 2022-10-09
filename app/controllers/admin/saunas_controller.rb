@@ -1,8 +1,8 @@
 class Admin::SaunasController < ApplicationController
   before_action :authenticate_admin!
   def index
-    # @saunas = Sauna.page(params[:page])
-    @saunas = Sauna.all
+    @count = Sauna.all.count
+    @saunas = Sauna.page(params[:page]).per(3)
   end
 
   def new

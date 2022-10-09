@@ -5,6 +5,7 @@ class Admin::HomesController < ApplicationController
      # ユーザーランキング
     @user_ranks = User.all.sort { |a, b| b.likes_count <=> a.likes_count }.slice(0,3)
     # サウナランキング
-    # @sauna_ranks = Sauna.all.sort { |a, b| b.likes_count <=> a.likes_count }.slice(0,3)
+    @sauna_ranks = Sauna.all.sort { |a, b| b.review_avg <=> a.review_avg }.slice(0,3)
+
   end
 end

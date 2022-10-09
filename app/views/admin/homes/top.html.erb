@@ -44,29 +44,51 @@
         <% end %>
       </table>
     </div>
-    <div class="col-5 offset-1">
+    <div class="col-5">
       <h3 class="my-3">サウナランキング(トップ３)</h3>
       <table>
         <tr>
           <td class="col-2">順位</td>
-          <td class="col-3">ユーザー名</td>
-          <td class="col-4">プロフィール画像</td>
+          <td class="col-3">サウナ</td>
+          <td class="col-4">店舗画像</td>
           <td class="col-3">評価</td>
         </tr>
-        <% @user_ranks.each_with_index do |user, index| %>
+        <% @sauna_ranks.each_with_index do |sauna, index| %>
         <tr>
-          <td class="col-1"><%= index + 1 %></td>
-          <td class="col-3"><%= link_to user.nickname, admin_user_path(user.id)%></td>
-          <td class="col-4">
-            <%= link_to admin_user_path(user.id) do %>
-            　<% if user.profile_image.attached? %>
-                <%= image_tag user.profile_image, size: "100x100" %>
+          <td class="col-1"><%= index + 1 %>位</td>
+          <td class="col-3"><%= link_to sauna.store_name, admin_sauna_path(sauna.id)%></td>
+          <td class="col-3">
+            <%= link_to admin_sauna_path(sauna.id) do %>
+            　<% if sauna.store_image.attached? %>
+                <%= image_tag sauna.store_image, size: "100x100" %>
             　<% else %>
                 <%= image_tag 'no_image', size: "100x100" %>
             　<% end %>
             <% end %>
           </td>
-          <td class="col-3"><%= user.likes_count %></td>
+          <td class="col-5">
+            <% review_scores = sauna.reviews.pluck(:score) %>
+            <% review_count = review_scores.count %>
+            <% average = review_scores.sum.fdiv(review_count) %>
+            <div class="row">
+              <div id="score-rate<%= sauna.id %>">
+                <script>
+                $(document).on('turbolinks:load', function () {
+                  $('#score-rate<%= sauna.id %>').empty();
+                  $('#score-rate<%= sauna.id %>').raty({
+                    size      : 36,
+                    starOff   : '<%= asset_path('star-off.png') %>',
+                    starOn    : '<%= asset_path('star-on.png') %>',
+                    starHalf  : '<%= asset_path('star-half.png') %>',
+                    half      : true,
+                    readOnly: true,
+                    score: <%= average.round(1) %>,
+                  });
+                });
+                </script>
+              </div>(<%= review_scores.any? ? "#{average.round(1)}点" : "まだレビューはありません" %>)
+            </div>
+          </td>
         </tr>
         <% end %>
       </table>

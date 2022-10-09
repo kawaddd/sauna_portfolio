@@ -1,7 +1,7 @@
 <div class="container" style="height: 500px">
   <div class="row">
     <div class="col-md-4 offset-md-1 mb-3">
-      <h3><%= @user.nickname %>の保存済み(全<%= @bookmarks.count %>件)</h3>
+      <h3><%= @user.nickname %>の保存済み(全<%= @count %>件)</h3>
     </div>
   </div>
   <div class="row">
@@ -55,4 +55,4 @@
       <% end %>
   </div>
 </div>
-<%= paginate @users %>
+<%= paginate @bookmarks %>
