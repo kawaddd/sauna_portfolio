@@ -29,3 +29,14 @@ header .headding { /* headerタグ内のheadingクラスにのみ反映される
     background-color: rgb(228,224,224);
     border-color: rgb(228,224,224);
 }
+
+.header-link:hover {
+  opacity: 0.7;
+  color: rgb(250,251,251);
+}
+
+// .header-link {
+//   background: mediumseagreen;
+//   padding: 8px 16px;
+// }
+

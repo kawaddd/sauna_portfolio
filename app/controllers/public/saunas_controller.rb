@@ -4,6 +4,7 @@ class Public::SaunasController < ApplicationController
     @saunas = saunas.page(params[:page]).per(3)
     @review = Review.new
     @count = saunas.count
+    # @review_count = saunas.reviews.count
   end
 
   def show

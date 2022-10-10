@@ -1,0 +1,13 @@
+.corner-color {
+  cursor: pointer;
+  border: solid 1px black;
+  color: black;
+  padding: 16px;
+  transition: all 0.3s;
+}
+
+.corner-color:hover {
+  background: white;
+  color: white;
+  border-radius: 20px;
+}

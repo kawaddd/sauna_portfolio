@@ -34,48 +34,48 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
             <% if admin_signed_in? %>
-              <li>
+              <li class="header-link">
                 <%= link_to "サウナ一覧", admin_saunas_path,class:"nav-link text-dark" %>
               </li>
-              <li>
+              <li class="header-link">
                 <%= link_to "会員一覧", admin_users_path,class:"nav-link text-dark" %>
               </li>
-              <li>
+              <li class="header-link">
                 <%= link_to "口コミ一覧", admin_reviews_path,class:"nav-link text-dark" %>
               </li>
-              <li>
+              <li class="header-link">
                 <%= link_to "ログアウト", destroy_admin_session_path, method: :delete,class:"nav-link text-dark"  %>
               </li>
             <% elsif user_signed_in? %>
-              <li>
+              <li class="header-link">
                 <%= link_to "サウナ一覧", saunas_path,class:"nav-link text-dark" %>
               </li>
-              <li>
+              <li class="header-link">
                 <%= link_to "マイページ", user_path(current_user),class:"nav-link text-dark" %>
               </li>
-              <li>
+              <li class="header-link">
                 <%= link_to "訪れたサウナ", user_visited_saunas_path(current_user),class:"nav-link text-dark" %>
               </li>
-              <li>
+              <li class="header-link">
                 <%= link_to "保存済み", user_hozon_saunas_path(current_user),class:"nav-link text-dark" %>
               </li>
-              <li>
+              <li class="header-link">
                 <%= link_to "レビュー済み", user_reviewed_saunas_path(current_user),class:"nav-link text-dark" %>
               </li>
-              <li>
+              <li class="header-link">
                 <%= link_to "ログアウト", destroy_user_session_path, method: :delete,class:"nav-link text-dark"  %>
               </li>
             <% else %>
-              <li>
+              <li class="header-link">
                 <%= link_to "about", about_path,class:"nav-link text-dark" %>
               </li>
-              <li>
+              <li class="header-link">
                 <%= link_to "サウナ一覧", saunas_path,class:"nav-link text-dark" %>
               </li>
-              <li>
+              <li class="header-link">
                 <%= link_to "新規登録", new_user_registration_path,class:"nav-link text-dark" %>
                </li>
-              <li>
+              <li class="header-link">
                 <%= link_to "ログイン", new_user_session_path,class:"nav-link text-dark" %>
               </li>
             <% end %>

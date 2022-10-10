@@ -1,7 +1,7 @@
 class Admin::ReviewsController < ApplicationController
   def index
     @count = Review.all.count
-    @reviews = Review.page(params[:page]).per(9)
+    @reviews = Review.page(params[:page]).per(10)
   end
 
   def destroy

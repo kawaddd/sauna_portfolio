@@ -142,3 +142,12 @@ h1 {
 .box-newusr a:hover {
   background: #e7e9ec;
 }
+
+
+.required {
+    color: #E00;
+}
+
+.required:after {
+    content: " *";
+}

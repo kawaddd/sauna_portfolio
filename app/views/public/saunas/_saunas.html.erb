@@ -45,7 +45,7 @@
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#review-modal-<%= sauna.id %>">
           口コミ投稿
-        </button>
+        </button><%= @review_count %>
         <!-- Modal -->
         <%= form_with model: [sauna, review],local: true do |f| %>
         <div class="modal fade" id="review-modal-<%= sauna.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
