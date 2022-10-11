@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get :about, to: 'homes#about'
     get "search" => "searches#search"
+    get "tag" => "saunas#tag"
     resources :saunas do
       resources :reviews do
         resources :comments, only: [:create, :destroy] do

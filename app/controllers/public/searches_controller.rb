@@ -1,15 +1,12 @@
 class Public::SearchesController < ApplicationController
   def search
     @address = params[:address]
-    @saunas = Sauna.where('address LIKE ?', "%#{@address}%")
+    @saunas = Sauna.where('address LIKE ?', "%#{@address}%").page(params[:page]).per(10)
     @review = Review.new
-
+    @count = @saunas.count
     if current_admin
-      # redirect admin側のpath
-      redirect_to admin_saunas_path
-    else
-      # redirect search
-      redirect_to saunas_path
+      # render admin側のfile
+      render 'admin/saunas/index'
     end
   end
 end

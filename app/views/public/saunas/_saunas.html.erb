@@ -1,6 +1,10 @@
 <div class="container" style="height: 500px">
   <div class="row">
     <div class="col-md-3 offset-md-1 mt-3">
+      <%= link_to "~2", tag_path(flag: "1"), class: "btn btn-success" %>
+      <%= link_to "2-3", tag_path(flag: "2"), class: "btn btn-success" %>
+      <%= link_to "3-4", tag_path(flag: "3"), class: "btn btn-success" %>
+      <%= link_to "4-5", tag_path(flag: "4"), class: "btn btn-success" %>
       <h3>
         <strong>サウナ(全<%= saunas_count %>件)</strong>
       </h3>
@@ -45,7 +49,7 @@
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#review-modal-<%= sauna.id %>">
           口コミ投稿
-        </button><%= @review_count %>
+        </button><%= sauna.reviews.count %>件
         <!-- Modal -->
         <%= form_with model: [sauna, review],local: true do |f| %>
         <div class="modal fade" id="review-modal-<%= sauna.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
