@@ -30,24 +30,30 @@
         <%= image_tag 'no_image', size: "200x200" %>
       <% end %>
     </div>
-    <div class="col-md-8">
+    <div class="mt-5">
       <table>
         <tr>
+          <th>電話番号</th>
           <td><%= @sauna.phone_number %></td>
         </tr>
         <tr>
+          <th>住所</th>
           <td><%= @sauna.address %></td>
         </tr>
         <tr>
+          <th>交通手段</th>
           <td><%= @sauna.transportation %></td>
         </tr>
         <tr>
+          <th>営業時間</th>
           <td><%= @sauna.business_hours %></td>
         </tr>
         <tr>
+          <th>定休日</th>
           <td><%= @sauna.regular_holiday %></td>
         </tr>
         <tr>
+          <th>ホームページ</th>
           <td><%= @sauna.homepage_link %></td>
         </tr>
       </table>
@@ -56,7 +62,7 @@
 
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+<button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target="#exampleModal">
   口コミ投稿
 </button>
 
@@ -98,18 +104,19 @@
 </div>
 <% end %>
 
-<%= link_to "口コミ一覧", sauna_reviews_path(@sauna.id), data: {"turbolinks" => false} %><%= @sauna.reviews.count %>件
+<div class="mt-2">
+  <%= link_to "口コミ一覧", sauna_reviews_path(@sauna.id), data: {"turbolinks" => false} %><%= @sauna.reviews.count %>件
+  <script>
+    $('#score').empty();
+    $('#score').raty({
+      size     : 36,
+      starOff:  '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+      starHalf: '<%= asset_path('star-half.png') %>',
+      scoreName: 'review[score]',
+      half: true,
 
-<script>
-  $('#score').empty();
-  $('#score').raty({
-    size     : 36,
-    starOff:  '<%= asset_path('star-off.png') %>',
-    starOn : '<%= asset_path('star-on.png') %>',
-    starHalf: '<%= asset_path('star-half.png') %>',
-    scoreName: 'review[score]',
-    half: true,
-
-    readOnly: false,
-  });
-</script>
+      readOnly: false,
+    });
+  </script>
+</div>

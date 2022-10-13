@@ -18,6 +18,7 @@
           <th>店舗画像</th>
           <th>電話番号</th>
           <th>住所</th>
+          <th>評価</th>
         </tr>
       </thead>
       <tbody>
@@ -36,6 +37,31 @@
           </td>
           <td><%= sauna.phone_number %></td>
           <td><%= sauna.address %></td>
+          <td>
+            <td>
+              <% review_scores = sauna.reviews.pluck(:score) %>
+              <% review_count = review_scores.count %>
+              <% average = review_scores.sum.fdiv(review_count) %>
+              <div class="row">
+                <div id="score-rate<%= sauna.id %>">
+                  <script>
+                  $(document).on('turbolinks:load', function () {
+                    $('#score-rate<%= sauna.id %>').empty();
+                    $('#score-rate<%= sauna.id %>').raty({
+                      size      : 36,
+                      starOff   : '<%= asset_path('star-off.png') %>',
+                      starOn    : '<%= asset_path('star-on.png') %>',
+                      starHalf  : '<%= asset_path('star-half.png') %>',
+                      half      : true,
+                      readOnly: true,
+                      score: <%= average.round(1) %>,
+                    });
+                  });
+                  </script>
+                </div>(<%= review_scores.any? ? "#{average.round(1)}点" : "まだレビューはありません" %>)
+              </div>
+            </td>
+          </td>
         </tr>
         <% end %>
       </tbody>
