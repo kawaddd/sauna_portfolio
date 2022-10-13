@@ -4,10 +4,16 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
 
-  devise_for :users,skip: [:passwords],controllers: {
+  devise_for :users, controllers: {
     registrations: "public/registrations",
-    sessions: 'public/sessions'
+    sessions: 'public/sessions',
+    passwords: 'public/passwords'
   }
+
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
+
 
   namespace :admin do
     root to: 'homes#top'

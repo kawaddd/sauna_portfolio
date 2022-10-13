@@ -78,6 +78,9 @@
               <li class="header-link">
                 <%= link_to "ログイン", new_user_session_path,class:"nav-link text-dark" %>
               </li>
+              <li class="header-link">
+                <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post,class:"nav-link text-dark" %>
+              </li>
             <% end %>
             </ul>
           </div>

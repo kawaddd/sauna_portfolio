@@ -13,6 +13,8 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :comment_likes, dependent: :destroy
 
+  validates :nickname, presence: true
+
   has_one_attached :profile_image
 
   def likes_count
@@ -29,6 +31,10 @@ class User < ApplicationRecord
 
     likes_count + comment_likes_count
   end
+
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com', nickname: 'guest') do |user|
+      user.password = SecureRandom.urlsafe_base64
+    end
+  end
 end
-
-
