@@ -10,23 +10,23 @@
 
 
   <div class="row">
-    <table class="col-12">
+    <table>
       <thead>
         <tr>
-          <th>サウナID</th>
-          <th>店名</th>
-          <th>店舗画像</th>
-          <th>電話番号</th>
-          <th>住所</th>
-          <th>評価</th>
+          <th class="col-1">サウナID</th>
+          <th class="col-2">店名</th>
+          <th class="col-1">店舗画像</th>
+          <th class="col-2">電話番号</th>
+          <th class="col-3">住所</th>
+          <th class="col-1">評価</th>
         </tr>
       </thead>
       <tbody>
         <% @saunas.each do |sauna| %>
         <tr>
-          <td><%= sauna.id %></td>
-          <td><%= link_to sauna.store_name, admin_sauna_path(sauna.id)%></td>
-          <td>
+          <td class="col-1"><%= sauna.id %></td>
+          <td class="col-2"><%= link_to sauna.store_name, admin_sauna_path(sauna.id)%></td>
+          <td class="col-1">
             <%= link_to admin_sauna_path(sauna.id) do %>
               <% if sauna.store_image.attached? %>
                 <%= image_tag sauna.store_image, size: "70x50" %>
@@ -35,10 +35,10 @@
               <% end %>
             <% end %>
           </td>
-          <td><%= sauna.phone_number %></td>
-          <td><%= sauna.address %></td>
+          <td class="col-2"><%= sauna.phone_number %></td>
+          <td class="col-3"><%= sauna.address %></td>
           <td>
-            <td>
+            <td class="col-3">
               <% review_scores = sauna.reviews.pluck(:score) %>
               <% review_count = review_scores.count %>
               <% average = review_scores.sum.fdiv(review_count) %>
