@@ -1,58 +1,76 @@
-<div class="container" style="height: 500px">
+<div class="container">
   <div class="row">
     <div class="col-md-4 offset-md-1 mb-3">
       <h3><%= @user.nickname %>の訪問済み(全<%= @count %>件)</h3>
     </div>
   </div>
-  <div class="row">
-      <% @visits.each do |visit| %>
-        <div class="col-md-4 offset-1 mb-4">
-          <%= link_to sauna_path(visit.sauna) do %>
-            <% if visit.sauna.store_image.attached? %>
-              <%= image_tag visit.sauna.store_image, size: "170x170" %>
-            <% else %>
-              <%= image_tag 'no_image', size: "170x170" %>
-            <% end %>
-          <% end %>
-        </div>
-        <div class="col-md-2 offset-1 mt-4">
-          <div class="my-2">店名</div>
-          <div class="my-2">住所</div>
-          <div class="my-2">営業時間</div>
-          <div class="my-2">お店の評価</div>
-        </div>
-        <div class="col-md-3 mt-4">
-          <div class="my-2">
-            <%= link_to sauna_path(visit.sauna) do %>
-              <%= visit.sauna.store_name %>
-            <% end %>
-          </div>
-          <div class="my-2"><%= visit.sauna.address %></div>
-          <div class="my-2"><%= visit.sauna.business_hours %></div>
-          <% @average = 0 %>
-          <% visit.sauna.reviews.each do |review| %>
-            <% @average += (review.score / visit.sauna.reviews.count) %>
-          <% end %>
-          <div class="row">
-            <div id="score-rate<%= visit.sauna.id%>">
-              <script>
-              $(document).on('turbolinks:load', function () {
-                $('#score-rate<%= visit.sauna.id %>').empty();
-                $('#score-rate<%= visit.sauna.id %>').raty({
-                  size      : 36,
-                  starOff   : '<%= asset_path('star-off.png') %>',
-                  starOn    : '<%= asset_path('star-on.png') %>',
-                  starHalf  : '<%= asset_path('star-half.png') %>',
-                  half      : true,
-                  readOnly: true,
-                  score: <%= @average.round(1) %>,
-                });
-              });
-              </script>
-            </div>(<%= @average.round(1) %>点)
-          </div>
-        </div>
-      <% end %>
+  <div>
+    <% @visits.each do |visit| %>
+      <table class="w-100">
+        <tbody>
+          <tr>
+            <td class="table-image">
+              <div class="m-3">
+                <%= link_to sauna_path(visit.sauna) do %>
+                  <% if visit.sauna.store_image.attached? %>
+                    <%= image_tag visit.sauna.store_image, size: "170x170" %>
+                  <% else %>
+                    <%= image_tag 'no_image', size: "170x170" %>
+                  <% end %>
+                <% end %>
+              </div>
+            </td>
+            <td>
+              <table class="w-100">
+                <tbody>
+                  <tr>
+                    <th class="table-head">店名</th>
+                    <td>
+                      <%= link_to sauna_path(visit.sauna) do %>
+                        <%= visit.sauna.store_name %>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>住所</th>
+                    <td><%= visit.sauna.address %></td>
+                  </tr>
+                  <tr>
+                    <th>営業時間</th>
+                    <td><%= visit.sauna.business_hours %></td>
+                  </tr>
+                  <tr>
+                    <th>お店の評価</th>
+                    <td>
+                      <% @average = 0 %>
+                      <% visit.sauna.reviews.each do |review| %>
+                        <% @average += (review.score / visit.sauna.reviews.count) %>
+                      <% end %>
+                      <div id="score-rate<%= visit.sauna.id%>">
+                        <script>
+                        $(document).on('turbolinks:load', function () {
+                          $('#score-rate<%= visit.sauna.id %>').empty();
+                          $('#score-rate<%= visit.sauna.id %>').raty({
+                            size      : 36,
+                            starOff   : '<%= asset_path('star-off.png') %>',
+                            starOn    : '<%= asset_path('star-on.png') %>',
+                            starHalf  : '<%= asset_path('star-half.png') %>',
+                            half      : true,
+                            readOnly: true,
+                            score: <%= @average.round(1) %>,
+                          });
+                        });
+                        </script>
+                      </div>(<%= @average.round(1) %>点)
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    <% end %>
   </div>
 </div>
 <%= paginate @visits %>

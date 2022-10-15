@@ -63,11 +63,11 @@
               <%= link_to "コメントする", sauna_review_path(id: review.id, sauna_id: @sauna) %>(<%= review.comments.count %>件)
             <%# end %>
           </div>
-          <div class="my-2">
-            <% if review.user_id == current_user.id %>
-              <%= link_to '口コミを編集する', edit_sauna_review_path(review.sauna_id,review.id) %>
-            <% end %>
-          </div>
+          <!--<div class="my-2">-->
+            <%# if review.user_id == current_user.id %>
+              <%#= link_to '口コミを編集する', edit_sauna_review_path(review.sauna_id,review.id) %>
+            <%# end %>
+          <!--</div>-->
         </div>
       <% end %>
   </div>

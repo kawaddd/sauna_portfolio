@@ -1,43 +1,66 @@
 <div class="container">
   <div class="row">
-  <div class="col-md-1"></div>
-  <h3><%= @sauna.store_name %>の情報編集</h3>
-  </div>
-
-  <div class="row">
-    <div class="col-md-12">
-    <%= form_with model: @sauna,url: admin_sauna_path(@sauna.id) do |f| %>
-      <table>
-        <tr>
-          <td><%= f.label :store_name, "店名" %></td>
-          <td><%= f.text_field :store_name %></td>
-        </tr>
-        <tr>
-          <td><%= f.label :phone_number, "お問い合わせ" %></td>
-          <td><%= f.text_field :phone_number %></td>
-        </tr>
-        <tr>
-          <td><%= f.label :address, "住所" %></td>
-          <td><%= f.text_field :address %></td>
-        </tr>
-        <tr>
-          <td><%= f.label :transportation, "交通機関" %></td>
-          <td><%= f.text_field :transportation %></td>
-        </tr>
-        <tr>
-          <td><%= f.label :business_hours, "営業時間" %></td>
-          <td><%= f.text_field :business_hours %></td>
-        </tr>
-        <tr>
-          <td><%= f.label :regular_holiday, "定休日" %></td>
-          <td><%= f.text_field :regular_holiday %></td>
-        </tr>
-        <tr>
-          <td><%= f.label :homepage_link, "ホームページリンク" %></td>
-          <td><%= f.text_field :homepage_link %></td>
-        </tr>
-      </table>
-    <%= f.submit '変更を保存' %>
-    <% end %>
+    <div class="col-md-10 offset-2">
+      <h3 class="my-3"><%= @sauna.store_name %>の情報編集</h3>
     </div>
   </div>
+  <%= form_with model: @sauna,url: admin_sauna_path(@sauna.id) do |f| %>
+  <div class="form-group row">
+    <div class="col-sm-2 offset-sm-2">
+      <%= f.label :store_name, "店名" %>
+    </div>
+    <div class="col-sm-4">
+      <%= f.text_field :store_name, size: "60x2" %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-2 offset-sm-2">
+      <%= f.label :phone_number, "お問い合わせ" %>
+    </div>
+    <div class="col-sm-4">
+      <%= f.text_field :phone_number, size: "60x2" %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-2 offset-sm-2">
+      <%= f.label :address, "住所" %>
+    </div>
+    <div class="col-sm-4">
+      <%= f.text_field :address, size: "60x2" %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-2 offset-sm-2">
+      <%= f.label :transportation, "交通機関" %>
+    </div>
+    <div class="col-sm-4">
+      <%= f.text_field :transportation, size: "60x2" %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-2 offset-sm-2">
+      <%= f.label :business_hours, "営業時間" %>
+    </div>
+    <div class="col-sm-4">
+      <%= f.text_field :business_hours, size: "60x2" %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-2 offset-sm-2">
+      <%= f.label :regular_holiday, "定休日" %>
+    </div>
+    <div class="col-sm-4">
+      <%= f.text_field :regular_holiday, size: "60x2" %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-2 offset-sm-2">
+      <%= f.label :homepage_link, "ホームページリンク" %>
+    </div>
+    <div class="col-sm-4">
+      <%= f.text_field :homepage_link, size: "60x2" %>
+    </div>
+  </div>
+  <%= f.submit '変更を保存',class: "btn btn-success col-md-2 offset-sm-2" %>
+  <% end %>
+</div>

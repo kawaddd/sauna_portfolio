@@ -23,13 +23,15 @@ class Public::UsersController < ApplicationController
 
   def hozon_saunas
     @user = User.find(params[:user_id])
-    @bookmarks = Bookmark.where(user_id: current_user.id).page(params[:page]).per(10)
+    @bookmarks = @user.bookmarks.page(params[:page]).per(10)
+    # @bookmarks = Bookmark.where(user_id: current_user.id).page(params[:page]).per(10)
     @count = @user.bookmarks.count
   end
 
   def visited_saunas
     @user = User.find(params[:user_id])
-    @visits = Visit.where(user_id: current_user.id).page(params[:page]).per(10)
+    @visits = @user.visits.page(params[:page]).per(10)
+    # @visits = Visit.where(user_id: current_user.id).page(params[:page]).per(10)
     @count = @user.visits.count
   end
 

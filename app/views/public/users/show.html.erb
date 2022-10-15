@@ -1,4 +1,4 @@
-<div class="container" style="height: 500px">
+<div class="container">
   <div class="row my-3 row_profile">
     <div class="col-sm-3">
       <% if @user.profile_image.attached? %>
@@ -31,18 +31,18 @@
 
           <%= @likes_count + @comment_likes_count %>
         </li>
-        <li class="my-1"><%= link_to "訪れたサウナ", user_visited_saunas_path(@user),class:"nav-link text-dark" %></li>
-        <li class="my-1"><%= link_to "保存済み", user_hozon_saunas_path(@user),class:"nav-link text-dark" %></li>
-        <li class="my-1"><%= link_to "レビュー済み", user_reviewed_saunas_path(@user),class:"nav-link text-dark" %></li>
+        <li class="my-1"><hr><%= link_to "訪れたサウナ", user_visited_saunas_path(@user),class:"nav-link text-dark" %><hr></li>
+        <li class="my-1"><%= link_to "保存済み", user_hozon_saunas_path(@user),class:"nav-link text-dark" %><hr></li>
+        <li class="my-1"><%= link_to "レビュー済み", user_reviewed_saunas_path(@user),class:"nav-link text-dark" %><hr></li>
         <% if @user == current_user %>
-          <li class="my-1"><%= link_to "マイページ設定", edit_user_path,class:"nav-link text-dark" %></li>
+          <li class="my-1"><%= link_to "マイページ設定", edit_user_path,class:"nav-link text-dark" %><hr></li>
         <% end %>
       </ul>
     </div>
   </div>
 
-  <div class="row my-3">
-    <div>
-      <h3 class="font-weight-bold">おすすめサウナ</h3>
-    </div>
-  </div>
+  <!--<div class="row my-3">-->
+  <!--  <div>-->
+  <!--    <h3 class="font-weight-bold">おすすめサウナ</h3>-->
+  <!--  </div>-->
+  <!--</div>-->

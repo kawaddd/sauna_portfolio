@@ -9,7 +9,7 @@ class Public::ReviewsController < ApplicationController
   def show
     @sauna = Sauna.find(params[:sauna_id])
     @review = Review.find(params[:id])
-    @comments = @review.comments.page(params[:page]).per(2)
+    @comments = @review.comments.page(params[:page]).per(20)
     @comment = Comment.new
     @count = @review.comments.count
   end
