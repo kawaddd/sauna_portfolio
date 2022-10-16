@@ -39,9 +39,12 @@
                 score: <%= review.score %>,
               });
             </script>
-
           </div>
-          <div><%= link_to '口コミを編集する', edit_sauna_review_path(review.sauna_id,review.id) %></div>
+          <div>
+            <% if @user == current_user %>
+              <%= link_to '口コミを編集する', edit_sauna_review_path(review.sauna_id,review.id) %>
+            <% end %>
+          </div>
         </div>
       <% end %>
   </div>

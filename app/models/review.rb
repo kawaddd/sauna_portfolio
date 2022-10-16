@@ -2,7 +2,7 @@ class Review < ApplicationRecord
   belongs_to :user
   belongs_to :sauna
   has_many :likes, dependent: :destroy
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
   validates :score, numericality: {
     less_than_or_equal_to: 5,

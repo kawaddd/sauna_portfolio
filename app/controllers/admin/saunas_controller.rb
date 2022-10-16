@@ -11,10 +11,7 @@ class Admin::SaunasController < ApplicationController
 
   def create
     @sauna = Sauna.new(sauna_params)
-
     if @sauna.save
-
-      # flash[:notice] = "You have created sauna successfully."
       redirect_to admin_sauna_path(@sauna.id)
     else
       @sauna = Sauna.all
@@ -34,6 +31,12 @@ class Admin::SaunasController < ApplicationController
     sauna = Sauna.find(params[:id])
     sauna.update(sauna_params)
     redirect_to admin_sauna_path(sauna)
+  end
+
+  def destroy
+    sauna = Sauna.find(params[:id])
+    sauna.destroy
+    redirect_to admin_saunas_path
   end
 
   private

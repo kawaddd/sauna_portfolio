@@ -31,7 +31,9 @@
                 <% end %>
             <% end %>
           <% end %>
-          <%= link_to '削除する', sauna_review_comment_path(review_id: @review, sauna_id: @sauna, id: comment.id),method: :delete,"data-confirm" => "本当に消しますか？",class: "btn btn-danger col-md-2 offset-sm-1" %>
+          <% if comment.user_id == current_user.id %>
+            <%= link_to '削除する', sauna_review_comment_path(review_id: @review, sauna_id: @sauna, id: comment.id),method: :delete,"data-confirm" => "本当に消しますか？",class: "btn btn-danger col-md-2 offset-sm-1" %>
+          <% end %>
           <hr>
         </div>
       <% end %>
