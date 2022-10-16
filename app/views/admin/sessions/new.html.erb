@@ -1,3 +1,9 @@
+<% if alert %>
+  <h2>エラーが発生しました。</h2>
+  <ul>
+    <li><%= alert %></li>
+  </ul>
+<% end %>
 <div class="box">
   <div class="box-inner">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>

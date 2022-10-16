@@ -29,7 +29,7 @@ Rails.application.routes.draw do
     get "tag" => "saunas#tag"
     resources :saunas do
       resources :reviews do
-        resources :comments, only: [:create, :destroy] do
+        resources :comments, only: [:index, :create, :destroy] do
           resources :comment_likes, only: [:create, :destroy]
         end
       end

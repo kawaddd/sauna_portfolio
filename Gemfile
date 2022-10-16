@@ -61,3 +61,5 @@ gem 'devise'
 gem 'kaminari','~> 1.2.1'
 
 gem 'font-awesome-rails'
+
+# gem 'devise-i18n'

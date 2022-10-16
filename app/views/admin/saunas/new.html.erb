@@ -1,58 +1,58 @@
 <h2>サウナ新規登録</h2>
-<%# if @sauna.errors.any? %>
-  <%#= @sauna.errors.count %>件のエラーが発生しました
+<% if @sauna.errors.any? %>
+  <%= @sauna.errors.count %>件のエラーが発生しました
   <ul>
-    <%# @sauna.errors.full_messages.each do |message| %>
-      <li><%#= message %></li>
-    <%# end %>
+    <% @sauna.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
   </ul>
-<%# end %>
+<% end %>
 <%= form_with model: @sauna,url: admin_saunas_path do |f| %>
 
   <div class="form-group row">
-    <div class="col-sm-2 offset-sm-1">サウナ画像</div>
+    <div class="col-sm-2 offset-sm-1 required">サウナ画像</div>
     <div class="col-sm-4">
       <%= f.file_field :store_image, accept: "image/*" %>
     </div>
   </div>
   <div class="form-group row">
-    <div class="col-sm-2 offset-sm-1">店名</div>
+    <div class="col-sm-2 offset-sm-1 required">店名</div>
     <div class="col-sm-4">
       <%= f.text_field :store_name,placeholder:"店名",class:"form-control"  %>
     </div>
   </div>
   <div class="form-group row">
-    <div class="col-sm-2 offset-sm-1">お問い合わせ</div>
+    <div class="col-sm-2 offset-sm-1 required">お問い合わせ</div>
     <div class="col-sm-4">
       <%= f.text_field :phone_number,placeholder:"1234567890",class:"form-control"  %>
     </div>
   </div>
   <div class="form-group row">
-    <div class="col-sm-2 offset-sm-1">住所</div>
+    <div class="col-sm-2 offset-sm-1 required">住所</div>
     <div class="col-sm-4">
       <%= f.text_field :address,placeholder:"大阪府大阪市中央区船場中央1-1-1",class:"form-control"  %>
     </div>
   </div>
   <div class="form-group row">
-    <div class="col-sm-2 offset-sm-1">交通手段</div>
+    <div class="col-sm-2 offset-sm-1 required">交通手段</div>
     <div class="col-sm-4">
       <%= f.text_field :transportation,placeholder:"御堂筋線　本町駅下車　徒歩1分",class:"form-control"  %>
     </div>
   </div>
   <div class="form-group row">
-    <div class="col-sm-2 offset-sm-1">営業時間</div>
+    <div class="col-sm-2 offset-sm-1 required">営業時間</div>
     <div class="col-sm-4">
       <%= f.text_field :business_hours,placeholder:"9:00~1:00",class:"form-control"  %>
     </div>
   </div>
   <div class="form-group row">
-    <div class="col-sm-2 offset-sm-1">定休日</div>
+    <div class="col-sm-2 offset-sm-1 required">定休日</div>
     <div class="col-sm-4">
       <%= f.text_field :regular_holiday,placeholder:"月曜日",class:"form-control"  %>
     </div>
   </div>
   <div class="form-group row">
-    <div class="col-sm-2 offset-sm-1">HPリンク</div>
+    <div class="col-sm-2 offset-sm-1 required">HPリンク</div>
     <div class="col-sm-4">
       <%= f.text_field :homepage_link,placeholder:"https://sauna.com",class:"form-control"  %>
     </div>

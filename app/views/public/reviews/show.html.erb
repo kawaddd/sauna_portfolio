@@ -21,7 +21,7 @@
           <% unless comment.user_id == current_user.id %>
             <% if comment.comment_liked_by?(current_user) %>
                  <!--一致するレコードが存在する＝すでにいいね済みの場合はdestroyアクションへ-->
-                <%= link_to sauna_review_comment_comment_like_path(sauna_id: @sauna, review_id: @review, comment_id: comment.id ), method: :delete do %>
+                <%= link_to sauna_review_comment_comment_like_path(sauna_id: @sauna, review_id: @review, comment_id: comment.id, id: comment.comment_likes.find_by(user_id: current_user.id).id ), method: :delete do %>
                     <span style="color:red;">❤︎</span>
                 <% end %>
             <% else %>
@@ -50,5 +50,15 @@
       <%= link_to "口コミ一覧に戻る", sauna_reviews_path(sauna_id: @sauna) %>
     </div>
   </div>
+  <% if @comment.present? %>
+    <% if @comment.errors.any? %>
+      <%= @comment.errors.count %>件のエラーが発生しました
+      <ul>
+        <% @comment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  <% end %>
   <%= paginate @comments %>
 </div>

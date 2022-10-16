@@ -14,7 +14,8 @@ class Admin::SaunasController < ApplicationController
     if @sauna.save
       redirect_to admin_sauna_path(@sauna.id)
     else
-      @sauna = Sauna.all
+      @count = Sauna.all.count
+      @saunas = Sauna.page(params[:page]).per(10)
       render :new
     end
   end

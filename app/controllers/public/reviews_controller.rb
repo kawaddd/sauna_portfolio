@@ -10,7 +10,6 @@ class Public::ReviewsController < ApplicationController
     @sauna = Sauna.find(params[:sauna_id])
     @review = Review.find(params[:id])
     @comments = @review.comments.page(params[:page]).per(20)
-    @comment = Comment.new
     @count = @review.comments.count
   end
 
@@ -20,7 +19,9 @@ class Public::ReviewsController < ApplicationController
     if @review.save
       redirect_back(fallback_location: root_path)
     else
-      @reviews = Review.all
+      @sauna = Sauna.find(params[:sauna_id])
+      @count = @sauna.reviews.count
+      @reviews = @sauna.reviews.page(params[:page]).per(5)
       render 'index'
     end
   end
