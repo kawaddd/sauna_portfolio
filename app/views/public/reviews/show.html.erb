@@ -42,8 +42,10 @@
   <div class="row">
     <div class="col-4">
       <%= form_with url: sauna_review_comments_path(@sauna, @review),local: true do |f| %>
+      <div class="required">
         <%= f.text_field :comment %>
         <%= f.submit 'コメントする' %>
+      </div>
       <% end %>
     </div>
     <div class="col-4">
