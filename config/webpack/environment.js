@@ -10,4 +10,8 @@ environment.plugins.prepend(
   })
 )
 
+environment.loaders.forEach(element => {
+          environment.loaders.get(element.key).use = environment.loaders.get(element.key).use.filter(rule => rule.loader !== 'postcss-loader')
+});
+
 module.exports = environment
