@@ -4,7 +4,7 @@
       <% if @user.profile_image.attached? %>
         <%= image_tag @user.profile_image, size: "250x200" %>
       <% else %>
-        <%= image_tag 'no_image', size: "250x200" %>
+        <%= image_tag asset_path('no_image.jpg'), size: "250x200" %>
       <% end %>
     </div>
     <div class="col-sm-4 offset-sm-1">

@@ -27,7 +27,7 @@
       <% if @sauna.store_image.attached? %>
         <%= image_tag @sauna.store_image, size: "200x200" %>
       <% else %>
-        <%= image_tag 'no_image', size: "200x200" %>
+        <%= image_tag asset_path('no_image.jpg'), size: "200x200" %>
       <% end %>
     </div>
     <div class="mt-5">
