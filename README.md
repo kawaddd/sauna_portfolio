@@ -14,11 +14,11 @@
 サウナの予備知識を身につけたい時や、サウナ選びの参考にしたい時
 
 ## 設計書
-WBShttps://docs.google.com/spreadsheets/d/1m_jQ1_cguDn2KyUKAuEazueVgrwUZLqYfYmpy19_Tjg/edit?usp=sharing
-実装機能リストhttps://docs.google.com/spreadsheets/d/110V91xziJ3RH_tB_LXHsAhwIkS6T160AVRRhWbp0UWA/edit?usp=sharing
-テーブル定義書https://docs.google.com/spreadsheets/d/1mrYjyYDIWC8otiA0WI7svbPz0j6x-s9s7zXc0HUeggY/edit?usp=sharing
-ER図https://drive.google.com/file/d/1eKhZ1kqNyrPA17yp08H8pfjfuZ7-8vN1/view?usp=sharing
-詳細設計書https://docs.google.com/spreadsheets/d/1JVpFumbD9YRw1d9Grx9yhdEoDht_7epwg7G8TpjRHfM/edit?usp=sharing
+https://docs.google.com/spreadsheets/d/1m_jQ1_cguDn2KyUKAuEazueVgrwUZLqYfYmpy19_Tjg/edit?usp=sharing
+https://docs.google.com/spreadsheets/d/110V91xziJ3RH_tB_LXHsAhwIkS6T160AVRRhWbp0UWA/edit?usp=sharing
+https://docs.google.com/spreadsheets/d/1mrYjyYDIWC8otiA0WI7svbPz0j6x-s9s7zXc0HUeggY/edit?usp=sharing
+https://drive.google.com/file/d/1eKhZ1kqNyrPA17yp08H8pfjfuZ7-8vN1/view?usp=sharing
+https://docs.google.com/spreadsheets/d/1JVpFumbD9YRw1d9Grx9yhdEoDht_7epwg7G8TpjRHfM/edit?usp=sharing
 
 ## 開発環境
 - OS：Linux(CentOS)
