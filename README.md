@@ -14,7 +14,11 @@
 サウナの予備知識を身につけたい時や、サウナ選びの参考にしたい時
 
 ## 設計書
-<準備中>
+WBS　https://docs.google.com/spreadsheets/d/1m_jQ1_cguDn2KyUKAuEazueVgrwUZLqYfYmpy19_Tjg/edit?usp=sharing
+実装機能リスト　https://docs.google.com/spreadsheets/d/110V91xziJ3RH_tB_LXHsAhwIkS6T160AVRRhWbp0UWA/edit?usp=sharing
+テーブル定義書　https://docs.google.com/spreadsheets/d/1mrYjyYDIWC8otiA0WI7svbPz0j6x-s9s7zXc0HUeggY/edit?usp=sharing
+ER図　https://drive.google.com/file/d/1eKhZ1kqNyrPA17yp08H8pfjfuZ7-8vN1/view?usp=sharing
+詳細設計書　　https://docs.google.com/spreadsheets/d/1JVpFumbD9YRw1d9Grx9yhdEoDht_7epwg7G8TpjRHfM/edit?usp=sharing
 
 ## 開発環境
 - OS：Linux(CentOS)
@@ -22,8 +26,3 @@
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
-
-## 使用素材
-- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
-- 使用しない場合は、使用素材の項目をREADMEから削除してください。
-<検討中>
